@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppBar from './components/AppBar';
-import Schedule from './pages/Schedule';
+import Schedule from './pages/schedule/components/Schedule';
 
 const queryClient = new QueryClient({
   defaultOptions: {
