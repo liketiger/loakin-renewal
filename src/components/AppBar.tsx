@@ -1,40 +1,47 @@
-import { Box, Container, AppBar as MuiAppBar, Toolbar, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Container,
+  AppBar as MuiAppBar,
+  Toolbar,
+  Typography,
+  useTheme
+} from '@mui/material';
 
 const AppBar = () => {
-    const theme = useTheme();
-    return (
-      <MuiAppBar
-        position='fixed'
-        sx={{
-          backgroundColor: theme.palette.primary.main
-        }}
-      >
-        <Container>
-          <Toolbar disableGutters>
+  const theme = useTheme();
+  return (
+    <MuiAppBar
+      position='fixed'
+      sx={{
+        backgroundColor: theme.palette.primary.main
+      }}
+    >
+      <Container sx={{ width: '100%' }}>
+        <Toolbar sx={{ width: '100%' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%'
+            }}
+          >
+            <Typography fontWeight='bold'>LOAKIN</Typography>
+            <Typography>스케쥴</Typography>
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%'
+                width: '100px',
+                justifyContent: 'space-between'
               }}
             >
-              <Typography fontWeight='bold'>LOAKIN</Typography>
-              <Typography>스케쥴</Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  width: '100px',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <Typography>멤버</Typography>
-                <Typography>설정</Typography>
-              </Box>
+              <Typography>멤버</Typography>
+              <Typography>설정</Typography>
             </Box>
-          </Toolbar>
-        </Container>
-      </MuiAppBar>
-    );
+          </Box>
+        </Toolbar>
+      </Container>
+    </MuiAppBar>
+  );
 };
 
 export default AppBar;

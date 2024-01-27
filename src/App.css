@@ -1,0 +1,17 @@
+.fc-day-sun a {
+  color: red;
+}
+
+.fc-day-sat a {
+  color: blue;
+}
+
+.fc-daygrid-day:hover {
+  background-color: rgb(216, 209, 209);
+  cursor: pointer;
+}
+
+.fc-event:hover {
+  background-color: antiquewhite;
+  cursor: pointer;
+}
