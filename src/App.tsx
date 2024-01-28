@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AppBar from './components/AppBar';
-import Schedule from './pages/schedule/components/Schedule';
 import './App.css';
+import AppBar from './components/AppBar';
+import { SchedulePage } from './pages/schedule';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +18,7 @@ function App() {
       <AppBar />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Schedule />} />
+          <Route path='/' element={<SchedulePage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
