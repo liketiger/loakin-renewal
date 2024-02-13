@@ -1,11 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { scheduleApi } from '.';
+import { scheduleDetailApi } from '.';
 
-export const scheduleQuery = {
+export const scheduleDetailQuery = {
     useRaidsGet: (date?: string) => {
     const { data } = useSuspenseQuery({
       queryKey: ['schedule', 'raids', date],
-      queryFn: () => scheduleApi.getRaids(date)
+      queryFn: () => scheduleDetailApi.getRaids(date)
     });
     return {
       data

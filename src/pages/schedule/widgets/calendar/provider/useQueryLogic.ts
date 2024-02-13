@@ -8,4 +8,4 @@ const useQueryLogic = () => {
     return {
         raids
     }
-}
+};
