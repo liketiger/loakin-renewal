@@ -1,7 +1,8 @@
+import dayjs from 'dayjs';
 import { Raids } from '../types/view';
 
 export const convertRaidsToEvents = (raids: Raids[]) =>
   raids.map((raid) => ({
-    title: `${raid.name}-${raid.level} ${raid.isAfterNoon ? '오후' : '오전'} ${raid.hour}${raid.isHalfAnHour ? ':30' : ':00'}`,
+    title: `${raid.name}-${raid.level} ${dayjs(raid.time, 'HH:mm:ss').format('HH:mm')}`,
     date: raid.date
   }));

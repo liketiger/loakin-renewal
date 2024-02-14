@@ -1,11 +1,11 @@
-import { scheduleRepository } from "../../../repository"
+import { scheduleRepository } from '../../../repository';
 
-export {useQueryLogic as useScheduleQueryLogic}
+export { useQueryLogic as useScheduleQueryLogic };
 
 const useQueryLogic = () => {
-    const { data: raids } = scheduleRepository.useRaidsGet();
+  const { data: raids } = scheduleRepository.useRaidsGet();
 
-    return {
-        raids
-    }
+  return {
+    raids
+  };
 };

@@ -1,7 +1,7 @@
-import { getSupabaseRaids } from '../../../services/raids/getSupabaseRaids';
+import { getSupabaseRaids } from '../../../services/raids';
 
 const url = {
-  getRaids: (date?: string) => getSupabaseRaids(date),
+  getRaids: (date?: string) => getSupabaseRaids(date)
 };
 
 export const scheduleApi = {
