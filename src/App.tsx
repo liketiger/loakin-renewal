@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AppBar from './components/AppBar';
 import { SchedulePage } from './pages/schedule';
+import { ScheduleDetailPage } from './pages/schedule-detail';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SchedulePage />} />
+          <Route path='/schedule-detail' element={<ScheduleDetailPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

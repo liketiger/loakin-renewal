@@ -1,11 +1,12 @@
-import React from 'react';
+import { scheduleDetailLayout } from './components/layout';
+import { ScheduleDetailWidget } from './widgets/raid-schedules/widget';
 
-const index = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+export {Index as ScheduleDetailPage}
+const Index = () => {
+  const { Layout } = scheduleDetailLayout;
+  return (
+    <Layout>
+      <ScheduleDetailWidget />
+    </Layout>
+  );
 };
-
-export default index;

@@ -1,5 +1,5 @@
 import { Checkbox, TableRow } from '@mui/material';
-import Td from '../../../components/table/Td';
+import Td from '../../../../../components/table/Td';
 
 const RaidTableRow = () => {
   return (

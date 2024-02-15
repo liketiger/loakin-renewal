@@ -2,14 +2,14 @@ import { createSupabaseRaid, deleteSupabaseRaid, getSupabaseRaids, updateSupabas
 import { RaidParams } from '../types/parameter';
 
 const url = {
-  getRaids: (date?: string) => getSupabaseRaids(date),
+  getRaid: (date?: string) => getSupabaseRaids(date),
   createRaids: (data: RaidParams) => createSupabaseRaid(data),
   updateRaids: (data: RaidParams) => updateSupabaseRaid(data),
   deleteRaids: (idList: number[]) => deleteSupabaseRaid(idList)
 };
 
 export const scheduleDetailApi = {
-  getRaids: url.getRaids,
+  getRaid: url.getRaid,
   createRaids: url.createRaids,
   updateRaids: url.updateRaids,
   deleteRaids: url.deleteRaids
