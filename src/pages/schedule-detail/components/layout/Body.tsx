@@ -1,14 +1,25 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 type Props = {
-    children: React.ReactNode;
-}
+  children: React.ReactNode;
+  sx?: CSSProperties
+};
 
-export const Body = ({children}: Props) => {
-    return (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
-            {children}
-        </Box>
-    );
+export const Body = ({ children, sx }: Props) => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        flexDirection: 'column',
+        padding: '10px',
+        gap: '10px',
+        ...sx
+      }}
+    >
+      {children}
+    </Box>
+  );
 };

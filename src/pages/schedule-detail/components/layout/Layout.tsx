@@ -12,7 +12,9 @@ export const Layout = ({ children }: Props) => {
         display: 'flex',
         justifyContent: 'space-between',
         padding: '20px',
-        paddingTop: ' 100px'
+        paddingTop: ' 100px',
+        width: '100%',
+        height: '100%'
       }}
     >
       {children}

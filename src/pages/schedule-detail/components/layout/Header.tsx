@@ -9,8 +9,17 @@ type Props = {
 export const Header = ({ children, title }: Props) => {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-      {title && <Typography>{title}</Typography>}
-      {children}
+      {title && <Typography fontWeight='bold'>{title}</Typography>}
+      <Box
+        sx={{
+          display: 'flex',
+          width: '200px',
+          justifyContent: 'right',
+          gap: '10px',
+        }}
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
