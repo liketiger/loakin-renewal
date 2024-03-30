@@ -1,18 +1,18 @@
 import { createContext } from 'react';
 import { voidFn } from '../../../../../utils';
-import { RaidParams } from '../../../types/parameter';
+import { RaidView } from '../../../types/view';
 
 type State = {
-  raidDetails?: RaidParams[];
-  onRaidCreate: (data: RaidParams) => void;
-  onRaidUpdate: (data: RaidParams) => void;
-  onRaidDelete: (idList: number[]) => void;
+  raidList?: RaidView[];
+  onRaidCreate: () => void;
+  onRaidDelete: (id: number) => void;
+  onRaidDeleteAll: () => void;
 };
 
 export { Context as ScheduleDetailContext };
 
 const Context = createContext<State>({
   onRaidCreate: voidFn,
-  onRaidUpdate: voidFn,
-  onRaidDelete: voidFn
+  onRaidDelete: voidFn,
+  onRaidDeleteAll: voidFn
 });

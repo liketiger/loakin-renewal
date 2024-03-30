@@ -8,7 +8,12 @@ import { ScheduleDetailPage } from './pages/schedule-detail';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 300 * 1000
+      staleTime: 300 * 1000,
+    },
+    mutations: {
+      onError: async (error: unknown) => {
+        console.log(error);
+      },
     }
   }
 });
@@ -16,11 +21,13 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppBar />
       <BrowserRouter>
+        <AppBar />
         <Routes>
           <Route path='/' element={<SchedulePage />} />
-          <Route path='/schedule-detail' element={<ScheduleDetailPage />} />
+          <Route path='/schedule-detail'>
+            <Route path=':date' element={<ScheduleDetailPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

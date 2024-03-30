@@ -6,7 +6,7 @@ export const scheduleDetailMutation = {
   useRaidCreate: (date: string) => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
-      mutationFn: (data: RaidParams) => scheduleDetailApi.createRaids(data),
+      mutationFn: () => scheduleDetailApi.createRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
           queryKey: ['schedule', 'raids', date]
@@ -36,7 +36,23 @@ export const scheduleDetailMutation = {
   useRaidDelete: (date: string) => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
-      mutationFn: (idList: number[]) => scheduleDetailApi.deleteRaids(idList),
+      mutationFn: (id: number) => scheduleDetailApi.deleteRaid(id),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['schedule', 'raids', date]
+        });
+      },
+      onError: async () => {}
+    });
+    return {
+      mutate
+    };
+  },
+
+  useAllRaidDelete: (date: string) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+      mutationFn: () => scheduleDetailApi.deleteAllRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
           queryKey: ['schedule', 'raids', date]

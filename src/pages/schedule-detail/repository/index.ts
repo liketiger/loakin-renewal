@@ -9,22 +9,35 @@ export const scheduleDetailRepository = {
       data
     };
   },
+  useRaidDetailsGet: (id: number) => {
+    const { data } = scheduleDetailQuery.useRaidDetailsGet(id);
+    return {
+      data
+    };
+  },
   useRaidCreate: (date: string) => {
     const { mutate } = scheduleDetailMutation.useRaidCreate(date);
     return {
-      run: (data: RaidParams) => mutate(data)
-    }
+      run: () => mutate()
+    };
   },
   useRaidUpdate: (date: string) => {
     const { mutate } = scheduleDetailMutation.useRaidUpdate(date);
     return {
       run: (data: RaidParams) => mutate(data)
-    }
+    };
   },
   useRaidDelete: (date: string) => {
     const { mutate } = scheduleDetailMutation.useRaidDelete(date);
     return {
-      run: (idList: number[]) => mutate(idList)
-    }
+      run: (id: number) => mutate(id)
+    };
+  },
+
+  useAllRaidDelete: (date: string) => {
+    const { mutate } = scheduleDetailMutation.useAllRaidDelete(date);
+    return {
+      run: () => mutate()
+    };
   }
 };

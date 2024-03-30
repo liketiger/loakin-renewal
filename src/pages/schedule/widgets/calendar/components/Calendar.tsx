@@ -12,14 +12,11 @@ import { useScheduleProvider } from '../provider/useProvider';
 export const Calendar = () => {
   const { raids } = useScheduleProvider();
   const navigate = useNavigate();
-  const setDate = useScheduleDetailsState((state) => state.setDate);
   dayjs.extend(customParseFormat);
 
   const onDateClick = (e: any) => {
-    setDate(e.dateStr);
-    navigate('/schedule-detail');
+    navigate(`/schedule-detail/${e.dateStr}`);
   };
-  console.log(dayjs('20:00:00', 'HH:mm:ss'));
 
   return (
     <FullCalendar

@@ -10,5 +10,16 @@ export const scheduleDetailQuery = {
     return {
       data
     };
+  },
+
+  useRaidDetailsGet: (id: number) => {
+    const { data } = useSuspenseQuery({
+      queryKey: ['schedule', 'raids', 'details', id],
+      queryFn: () => scheduleDetailApi.getRaidDetails(id)
+    });
+
+    return {
+      data
+    }
   }
 };

@@ -9,18 +9,18 @@ type Props = {
 };
 
 const Provider = ({ children }: Props) => {
-  const { raidDetails, onRaidCreate, onRaidUpdate, onRaidDelete } =
+  const { raidList, onRaidCreate, onRaidDelete, onRaidDeleteAll } =
     useScheduleDetailQueryLogic();
   const value = useMemo(
     () => ({
-      raidDetails,
+      raidList,
       onRaidCreate,
-      onRaidUpdate,
-      onRaidDelete
+      onRaidDelete,
+      onRaidDeleteAll
     }),
-    [raidDetails, onRaidCreate, onRaidUpdate, onRaidDelete]
+    [raidList, onRaidCreate, onRaidDelete, onRaidDeleteAll]
   );
-  
+
   return (
     <ScheduleDetailContext.Provider value={value}>
       {children}

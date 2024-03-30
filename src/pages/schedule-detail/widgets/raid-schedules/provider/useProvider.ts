@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { ScheduleDetailContext } from './context';
 
-export { useProvider as useScheduleProvider };
+export { useProvider as useRaidScheduleProvider };
 const useProvider = () => {
-  const { raidDetails, onRaidCreate, onRaidUpdate, onRaidDelete } = useContext(
+  const { raidList, onRaidCreate, onRaidDelete, onRaidDeleteAll } = useContext(
     ScheduleDetailContext
   );
   return {
-    raidDetails,
+    raidList,
     onRaidCreate,
-    onRaidUpdate,
+    onRaidDeleteAll,
     onRaidDelete
   };
 };

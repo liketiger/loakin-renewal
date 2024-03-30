@@ -1,14 +1,17 @@
 import {
   Box,
+  Button,
   Container,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
   useTheme
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const AppBar = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
     <MuiAppBar
       position='fixed'
@@ -25,13 +28,24 @@ const AppBar = () => {
               width: '100%'
             }}
           >
-            <Typography fontWeight='bold'>LOAKIN</Typography>
-            <Typography>스케쥴</Typography>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+              onClick={() => navigate('/')}
+            >
+              <Typography>LOAKIN</Typography>
+            </Box>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+              onClick={() => navigate('/')}
+            >
+              <Typography>스케쥴</Typography>
+            </Box>
             <Box
               sx={{
                 display: 'flex',
                 width: '100px',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}
             >
               <Typography>멤버</Typography>
