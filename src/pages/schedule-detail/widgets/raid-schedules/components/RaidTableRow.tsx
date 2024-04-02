@@ -29,7 +29,7 @@ const RaidTableRow = ({ item }: Props) => {
   });
   const actions = {
     onCreate: onRaidCreate,
-    onRaidDelete: () => onRaidDelete(item.id)
+    onDelete: () => onRaidDelete(item.id)
   };
 
   return (

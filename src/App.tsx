@@ -4,6 +4,7 @@ import './App.css';
 import AppBar from './components/AppBar';
 import { SchedulePage } from './pages/schedule';
 import { ScheduleDetailPage } from './pages/schedule-detail';
+import { Dialog } from './components/dialog/Dialog';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Dialog />
     </QueryClientProvider>
   );
 }
