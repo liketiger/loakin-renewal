@@ -1,19 +1,16 @@
 import { TableBody, TableHead, TableRow } from '@mui/material';
-import { NoResult } from '../../../../../components/common/NoResult';
+import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
 import { CommonTable } from '../../../../../components/table/CommonTable';
 import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
 import { Th } from '../../../../../components/table/Th';
-import { ScheduleDetailRaidTableRow } from './RaidTableRow';
-import { useRaidScheduleProvider } from '../provider/useProvider';
-import { RaidView } from '../../../types/view';
-import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
 import { getCommonControlPanelHeaderItemList } from '../../../../../constants';
+import { RaidSchedulesRowWidget } from '../../raid-schedules-row/widget';
+import { useRaidScheduleProvider } from '../provider/useProvider';
 
 export { RaidTable as ScheduleDetailRaidTable };
 
 const RaidTable = () => {
-  const { raidList, onRaidCreate, onRaidDeleteAll } = useRaidScheduleProvider();
-  const isListEmpty = raidList?.length === 0;
+  const { onRaidCreate, onRaidDeleteAll } = useRaidScheduleProvider();
   const actions = {
     onCreate: onRaidCreate,
     onDeleteAll: onRaidDeleteAll
@@ -35,11 +32,7 @@ const RaidTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {isListEmpty && <NoResult colsapn={4} />}
-          {!isListEmpty &&
-            raidList?.map((item: RaidView) => (
-              <ScheduleDetailRaidTableRow key={item.id} item={item} />
-            ))}
+          <RaidSchedulesRowWidget />
         </TableBody>
       </CommonTable>
     </CommonTableContainer>

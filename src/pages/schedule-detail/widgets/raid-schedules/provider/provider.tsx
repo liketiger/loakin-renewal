@@ -9,16 +9,13 @@ type Props = {
 };
 
 const Provider = ({ children }: Props) => {
-  const { raidList, onRaidCreate, onRaidDelete, onRaidDeleteAll } =
-    useScheduleDetailQueryLogic();
+  const { onRaidCreate, onRaidDeleteAll } = useScheduleDetailQueryLogic();
   const value = useMemo(
     () => ({
-      raidList,
       onRaidCreate,
-      onRaidDelete,
       onRaidDeleteAll
     }),
-    [raidList, onRaidCreate, onRaidDelete, onRaidDeleteAll]
+    [onRaidCreate, onRaidDeleteAll]
   );
 
   return (

@@ -1,13 +1,14 @@
-import { Checkbox, TableRow } from '@mui/material';
+import { TableRow } from '@mui/material';
 import dayjs from 'dayjs';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
 import { HookFormTimePicker } from '../../../../../components/common/HookFormTimePicker';
-import { Td } from '../../../../../components/table/Td';
-import { RaidView } from '../../../types/view';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
+import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
-import { useRaidScheduleProvider } from '../provider/useProvider';
+import { RaidView } from '../../../types/view';
+import { useRaidScheduleProvider } from '../../raid-schedules/provider/useProvider';
+import { useRaidSchedulesRowProvider } from '../provider/useProvider';
 
 export { RaidTableRow as ScheduleDetailRaidTableRow };
 
@@ -16,7 +17,7 @@ type Props = {
 };
 
 const RaidTableRow = ({ item }: Props) => {
-  const { onRaidCreate, onRaidDelete } = useRaidScheduleProvider();
+  const { onRaidCreate, onRaidDelete, onRaidUpdate } = useRaidSchedulesRowProvider();
   const methods = useForm({
     values: {
       id: item.id,

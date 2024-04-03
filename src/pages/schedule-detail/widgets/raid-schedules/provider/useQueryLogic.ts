@@ -12,22 +12,17 @@ const useQueryLogic = () => {
   const { date: dateParams } = useParams();
   const navigate = useNavigate();
 
-  const { data: raidList } = scheduleDetailRepository.useRaidGet(date);
+  
   const { run: onRaidCreate } = scheduleDetailRepository.useRaidCreate(date!);
-  const { run: onRaidUpdate } = scheduleDetailRepository.useRaidUpdate(date!);
-  const { run: onRaidDelete } = scheduleDetailRepository.useRaidDelete(date!);
   const { run: onRaidDeleteAll } = scheduleDetailRepository.useAllRaidDelete(date!);
 
   useEffect(() => {
     if (!dateParams) navigate('/');
     setDate(dateParams!);
-  });
+  }, [dateParams, setDate, navigate]);
 
   return {
-    raidList,
     onRaidCreate,
-    onRaidUpdate,
-    onRaidDelete,
     onRaidDeleteAll
   };
 };
