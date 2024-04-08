@@ -5,7 +5,7 @@ import { RaidSchedulesRowProvider } from './provider/provider';
 
 export { Widget as RaidSchedulesRowWidget };
 
-const Widget = () => {
+const Widget = () => {  
   return (
     <Suspense fallback={<TableSpinner colspan={4} />}>
       <RaidSchedulesRowProvider>

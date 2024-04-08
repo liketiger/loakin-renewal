@@ -7,7 +7,6 @@ import { ControlPanel } from '../../../../../components/control-pannel/ControlPa
 import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
 import { RaidView } from '../../../types/view';
-import { useRaidScheduleProvider } from '../../raid-schedules/provider/useProvider';
 import { useRaidSchedulesRowProvider } from '../provider/useProvider';
 
 export { RaidTableRow as ScheduleDetailRaidTableRow };
@@ -17,21 +16,24 @@ type Props = {
 };
 
 const RaidTableRow = ({ item }: Props) => {
-  const { onRaidCreate, onRaidDelete, onRaidUpdate } = useRaidSchedulesRowProvider();
+  const { onRaidCreate, onRaidDelete, onRaidUpdate } =
+    useRaidSchedulesRowProvider();
   const methods = useForm({
     values: {
       id: item.id,
-      created_at: item.created_at,
       name: item.name ?? '',
       level: item.level ?? '',
       date: item.date,
-      time: dayjs(item.time, 'HH:mm:ss')
+      time: item.time ? dayjs(item.time) : '',
     }
   });
   const actions = {
     onCreate: onRaidCreate,
     onDelete: () => onRaidDelete(item.id)
   };
+  const onSubmit = methods.handleSubmit((data) => {
+    onRaidUpdate(data);
+  });  
 
   return (
     <FormProvider {...methods}>
@@ -41,7 +43,7 @@ const RaidTableRow = ({ item }: Props) => {
         </Td>
         <Td>
           <HookFormTimePicker
-            onSubmit={() => console.log(methods.watch('time'))}
+            onSubmit={onSubmit}
             name='time'
           />
         </Td>
@@ -53,6 +55,7 @@ const RaidTableRow = ({ item }: Props) => {
               { label: 'test2', value: '2' }
             ]}
             defaultValue='선택'
+            onSubmit={onSubmit}
           />
         </Td>
         <Td>
@@ -63,6 +66,7 @@ const RaidTableRow = ({ item }: Props) => {
               { label: 'test2', value: '2' }
             ]}
             defaultValue='선택'
+            onSubmit={onSubmit}
           />
         </Td>
       </TableRow>

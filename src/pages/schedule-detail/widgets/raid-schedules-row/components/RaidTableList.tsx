@@ -7,7 +7,6 @@ export { RaidTableList as ScheduleDetailRaidTableList };
 
 const RaidTableList = () => {
     const { raidList } = useRaidSchedulesRowProvider();
-
     const isListEmpty = raidList?.length === 0;
   return (
     <>

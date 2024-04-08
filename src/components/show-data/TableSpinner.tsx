@@ -17,7 +17,6 @@ const TableSpinner = ({
   sx,
   colspan
 }: Props) => {
-  console.log('hi');
 
   return (
     <TableRow>

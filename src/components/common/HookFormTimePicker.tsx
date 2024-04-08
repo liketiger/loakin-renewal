@@ -21,6 +21,7 @@ export const HookFormTimePicker = ({ name, onSubmit, width }: Props) => {
   const handleChange = useCallback(
     (value: any) => {
       onHookFormChange(dayjs(value));
+      
       onSubmit?.();
     },
     [onHookFormChange, onSubmit]
@@ -29,7 +30,7 @@ export const HookFormTimePicker = ({ name, onSubmit, width }: Props) => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
         label='시간 선택'
-        value={value}
+        value={value || null}
         onChange={handleChange}
         sx={{
           width,
