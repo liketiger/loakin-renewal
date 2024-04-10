@@ -7,3 +7,11 @@ export type RaidParams = {
     time: Dayjs | string;
     date: string;
 }
+
+export type PartyMembersParams = {
+    id: number;
+    characterName: string;
+    itemLevel: number;
+    class: string;
+    userName: string;
+}

@@ -1,6 +1,6 @@
 import { scheduleDetailMutation } from '../api/mutation';
 import { scheduleDetailQuery } from '../api/query';
-import { RaidParams } from '../types/parameter';
+import { PartyMembersParams, RaidParams } from '../types/parameter';
 
 export const scheduleDetailRepository = {
   useRaidGet: (date?: string) => {
@@ -36,6 +36,41 @@ export const scheduleDetailRepository = {
 
   useAllRaidDelete: (date: string) => {
     const { mutate } = scheduleDetailMutation.useAllRaidDelete(date);
+    return {
+      run: () => mutate()
+    };
+  },
+
+  usePartyMembersGet: (raidId: number) => {
+    const { data } = scheduleDetailQuery.usePartyMembersGet(raidId);
+    return {
+      data
+    };
+  },
+
+  usePartyMembersCreate: (raidId: number) => {
+    const { mutate } = scheduleDetailMutation.usePartyMembersCreate(raidId);
+    return {
+      run: () => mutate()
+    };
+  },
+
+  usePartyMembersUpdate: (raidId: number) => {
+    const { mutate } = scheduleDetailMutation.usePartyMembersUpdate(raidId);
+    return {
+      run: (data: PartyMembersParams) => mutate(data)
+    };
+  },
+
+  usePartyMembersDelete: (raidId: number) => {
+    const { mutate } = scheduleDetailMutation.usePartyMembersDelete(raidId);
+    return {
+      run: (id: number) => mutate(id)
+    };
+  },
+
+  usePartyMembersDeleteAll: (raidId: number) => {
+    const { mutate } = scheduleDetailMutation.usePartyMembersDeleteAll(raidId);
     return {
       run: () => mutate()
     };

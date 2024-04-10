@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { scheduleDetailApi } from '.';
-import { RaidParams } from '../types/parameter';
-import { useDialog } from '../../../components/dialog/useDialog';
+import { PartyMembersParams, RaidParams } from '../types/parameter';
 
 export const scheduleDetailMutation = {
   useRaidCreate: (date: string) => {
@@ -13,7 +12,6 @@ export const scheduleDetailMutation = {
           queryKey: ['schedule', 'raids', date]
         });
       },
-      onError: async () => {}
     });
     return {
       mutate
@@ -28,7 +26,6 @@ export const scheduleDetailMutation = {
           queryKey: ['schedule', 'raids', date]
         });
       },
-      onError: async () => {}
     });
     return {
       mutate
@@ -36,18 +33,11 @@ export const scheduleDetailMutation = {
   },
   useRaidDelete: (date: string) => {
     const queryClient = useQueryClient();
-    const { alert } = useDialog();
     const { mutate } = useMutation({
       mutationFn: (id: number) => scheduleDetailApi.deleteRaid(id),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
           queryKey: ['schedule', 'raids', date]
-        });
-      },
-      onError: async () => {
-        alert({
-          description: '삭제에 실패했습니다.',
-          title: '알림'
         });
       }
     });
@@ -65,7 +55,67 @@ export const scheduleDetailMutation = {
           queryKey: ['schedule', 'raids', date]
         });
       },
-      onError: async () => {}
+    });
+    return {
+      mutate
+    };
+  },
+
+  usePartyMembersCreate: (raidId: number) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+      mutationFn: () => scheduleDetailApi.createPartyMembers(raidId),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['schedule', 'raids', 'members', raidId]
+        });
+      },
+
+    });
+    return {
+      mutate
+    };
+  },
+
+  usePartyMembersUpdate: (raidId: number) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+      mutationFn: (data: PartyMembersParams) => scheduleDetailApi.updatePartyMembers(data),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['schedule', 'raids', 'members', raidId]
+        });
+      },
+    });
+    return {
+      mutate
+    };
+  },
+
+  usePartyMembersDelete: (raidId: number) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+      mutationFn: (id: number) => scheduleDetailApi.deletePartyMembers(id),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['schedule', 'raids', 'members', raidId]
+        });
+      },
+    });
+    return {
+      mutate
+    };
+  },
+
+  usePartyMembersDeleteAll: (raidId: number) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+      mutationFn: () => scheduleDetailApi.deleteAllPartyMembers(raidId),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['schedule', 'raids', 'members', raidId]
+        });
+      },
     });
     return {
       mutate

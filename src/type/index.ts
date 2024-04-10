@@ -9,6 +9,7 @@ export interface ControlPanelActions {
   onCreate?: () => void;
   onDelete?: () => void;
   onDeleteAll?: () => void;
+  onDetail?: () => void;
 }
 
 export interface ControlPanelItem {

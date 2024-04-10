@@ -1,62 +1,49 @@
 import { TableRow } from '@mui/material';
-import dayjs from 'dayjs';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
 import { HookFormTimePicker } from '../../../../../components/common/HookFormTimePicker';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
 import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
-import { RaidView } from '../../../types/view';
-import { useRaidSchedulesRowProvider } from '../provider/useProvider';
-import { ColorPalette } from '../../../../../utils/colors';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useScheduleDetailsState } from '../../../usetState';
+import { PartyMembersView } from '../../../types/view';
+import { useScheduleDetailPartyMembersRowProvider } from '../provider/useProvider';
 
-export { RaidTableRow as ScheduleDetailRaidTableRow };
+export { PartyMembersTableRow as ScheduleDetailPartyMembersTableRow };
 
 type Props = {
-  item: RaidView;
+  item: PartyMembersView;
 };
 
-const RaidTableRow = ({ item }: Props) => {
-  const { onRaidCreate, onRaidDelete, onRaidUpdate } =
-    useRaidSchedulesRowProvider();
+const PartyMembersTableRow = ({ item }: Props) => {
   const navigate = useNavigate();
-  const date = useScheduleDetailsState((state) => state.date);
-  const { raidId } = useParams();
+  const { onPartyMembersCreate, onPartyMembersDelete, onPartyMembersUpdate } =
+    useScheduleDetailPartyMembersRowProvider();
   const methods = useForm({
     values: {
       id: item.id,
-      name: item.name ?? '',
-      level: item.level ?? '',
-      date: item.date,
-      time: item.time ? dayjs(item.time) : ''
+      characterName: item.characterName ?? '',
+      itemLevel: item.itemLevel ?? '',
+      class: item.class ?? '',
+      userName: item.userName ?? ''
     }
   });
   const actions = {
-    onCreate: onRaidCreate,
-    onDelete: () => onRaidDelete(item.id),
-    onDetail: () => {
-      navigate(`/schedule-detail/${date}/${item.id}`);
-    }
+    onCreate: onPartyMembersCreate,
+    onDelete: () => onPartyMembersDelete(item.id),
   };
+
   const onSubmit = methods.handleSubmit((data) => {
-    onRaidUpdate(data);
+    onPartyMembersUpdate(data);
   });
 
   return (
     <FormProvider {...methods}>
-      <TableRow
-        sx={{
-          backgroundColor:
-            raidId === `${item.id}` ? ColorPalette.grayLight : 'inherit'
-        }}
-      >
+      <TableRow>
         <Td>
           <ControlPanel itemList={getCommonControlPanelItemList({ actions })} />
         </Td>
         <Td>
-          <HookFormTimePicker onSubmit={onSubmit} name='time' />
         </Td>
         <Td>
           <HookFormSelect

@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title?: string;
 };
 
