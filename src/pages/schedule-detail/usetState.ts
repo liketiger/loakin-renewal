@@ -9,6 +9,8 @@ type State = {
   setIsCreate: (isCreate: boolean) => void;
   modalId?: number;
   setModalId?: (modalId: number) => void;
+  memberCount: number;
+  setMemberCount: (memberCount: number) => void;
 };
 
 export { useState as useScheduleDetailsState };
@@ -22,5 +24,7 @@ const useState = create<State>((set) => ({
   setIsModalOpen: (isModalOpen: boolean) => set(() => ({ isModalOpen })),
   isCreate: false,
   setIsCreate: (isCreate: boolean) => set(() => ({ isCreate })),
-  setModalId: (modalId: number) => set(() => ({ modalId }))
+  setModalId: (modalId: number) => set(() => ({ modalId })),
+  memberCount: 0,
+  setMemberCount: (memberCount: number) => set(() => ({ memberCount })),
 }));

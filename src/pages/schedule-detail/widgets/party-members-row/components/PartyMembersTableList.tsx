@@ -1,5 +1,5 @@
 import { NoResult } from "../../../../../components/show-data/NoResult";
-import { PartyMembersView, RaidView } from "../../../types/view";
+import { PartyMembersView } from "../../../types/view";
 import { useScheduleDetailPartyMembersRowProvider } from "../provider/useProvider";
 import { ScheduleDetailPartyMembersTableRow } from "./PartyMembersTableRow";
 
@@ -14,7 +14,7 @@ const PartyMembersTableList = () => {
       {isListEmpty && <NoResult colsapn={5} />}
       {!isListEmpty &&
         partyMembersList?.map((item: PartyMembersView) => (
-          <ScheduleDetailPartyMembersTableRow key={item.id} item={item} />
+          <ScheduleDetailPartyMembersTableRow key={item.id} item={item} len={partyMembersList.length} />
         ))}
     </>
   );

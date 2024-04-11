@@ -1,20 +1,29 @@
-import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
-import { CommonTable } from '../../../../../components/table/CommonTable';
 import { TableBody, TableHead, TableRow } from '@mui/material';
-import { Th } from '../../../../../components/table/Th';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
+import { useDialog } from '../../../../../components/dialog/useDialog';
+import { CommonTable } from '../../../../../components/table/CommonTable';
+import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
+import { Th } from '../../../../../components/table/Th';
 import { getCommonControlPanelHeaderItemList } from '../../../../../constants';
+import { useScheduleDetailsState } from '../../../usetState';
 import { ScheduleDetailPartyMembersRowWidget } from '../../party-members-row/widget';
 import { useScheduleDetailPartyMembersProvider } from '../provider/useProvider';
 
 export { PartyMembersTable as ScheduleDetailPartyMembersTable };
 
 const PartyMembersTable = () => {
-  const { onPartyMembersCreate, onPartyMembersDeleteAll } = useScheduleDetailPartyMembersProvider();
+  const { onPartyMembersCreate, onPartyMembersDeleteAll } =
+    useScheduleDetailPartyMembersProvider();
+  const memberCount = useScheduleDetailsState((state) => state.memberCount);
+  const { alert } = useDialog();
   const actions = {
-    onCreate: onPartyMembersCreate,
+    onCreate: () => {
+      if (memberCount === 8) {
+        alert({ title: '알림', description: '8명이상 등록할 수 없습니다' });
+        return;
+      }
+      onPartyMembersCreate();
+    },
     onDeleteAll: () => onPartyMembersDeleteAll()
   };
   return (
@@ -28,14 +37,14 @@ const PartyMembersTable = () => {
                 itemList={getCommonControlPanelHeaderItemList({ actions })}
               />
             </Th>
+            <Th width='4%'>유저명</Th>
             <Th width='10%'>캐릭터명</Th>
             <Th width='4%'>아이템 레벨</Th>
             <Th width='6%'>클래스</Th>
-            <Th width='4%'>유저명</Th>
           </TableRow>
         </TableHead>
         <TableBody>
-            <ScheduleDetailPartyMembersRowWidget />
+          <ScheduleDetailPartyMembersRowWidget />
         </TableBody>
       </CommonTable>
     </CommonTableContainer>

@@ -7,6 +7,7 @@ import { ScheduleDetailPage } from './pages/schedule-detail';
 import { Dialog } from './components/dialog/Dialog';
 import { ScheduleDetailPartyMembersWidget } from './pages/schedule-detail/widgets/party-members/widget';
 import { useDialog } from './components/dialog/useDialog';
+import { SettingsPage } from './pages/settings';
 
 const CustomQueryClientProvider = ({
   children
@@ -50,6 +51,7 @@ function App() {
               />
             </Route>
           </Route>
+          <Route path='/settings' element={<SettingsPage />} />
         </Routes>
       </BrowserRouter>
       <Dialog />
