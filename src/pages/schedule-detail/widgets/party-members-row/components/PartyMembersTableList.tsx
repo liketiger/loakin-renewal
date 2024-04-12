@@ -14,7 +14,7 @@ const PartyMembersTableList = () => {
       {isListEmpty && <NoResult colsapn={5} />}
       {!isListEmpty &&
         partyMembersList?.map((item: PartyMembersView) => (
-          <ScheduleDetailPartyMembersTableRow key={item.id} item={item} len={partyMembersList.length} />
+          <ScheduleDetailPartyMembersTableRow key={item.id} item={item} />
         ))}
     </>
   );

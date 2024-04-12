@@ -14,7 +14,8 @@ export const Layout = ({ children }: Props) => {
         padding: '20px',
         paddingTop: ' 100px',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        scrollbarGutter: 'stable',
       }}
     >
       {children}

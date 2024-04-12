@@ -17,10 +17,9 @@ export { PartyMembersTableRow as ScheduleDetailPartyMembersTableRow };
 
 type Props = {
   item: PartyMembersView;
-  len: number;
 };
 
-const PartyMembersTableRow = ({ item, len }: Props) => {
+const PartyMembersTableRow = ({ item }: Props) => {
   const { onPartyMembersCreate, onPartyMembersDelete, onPartyMembersUpdate } =
     useScheduleDetailPartyMembersRowProvider();
   const memberCount = useScheduleDetailsState((state) => state.memberCount);
