@@ -7,11 +7,13 @@ import { Th } from '../../../../../components/table/Th';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
 import { getCommonControlPanelHeaderItemList } from '../../../../../constants';
 import { RaidSettingsTableRowWidget } from '../../raid-settings-table-row/widget';
+import { useRaidSettingsProvider } from '../provider/useProvider';
 
 export const RaidSettingsTable = () => {
+  const { onSettingsCreate, onSettingsDeleteAll } = useRaidSettingsProvider();
   const actions = {
-    onCreate: () => {},
-    onDeleteAll: () => {}
+    onCreate: onSettingsCreate,
+    onDeleteAll: onSettingsDeleteAll
   };
   return (
     <CommonTableContainer>
