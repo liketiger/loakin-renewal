@@ -2,10 +2,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { settingsApi } from '.';
 
 export const settingsQuery = {
-  useSettingsGet: () => {
+  useSettingsGet: (keyword: string) => {
     const { data } = useSuspenseQuery({
-      queryKey: ['settings'],
-      queryFn: () => settingsApi.getSettings()
+      queryKey: ['settings', keyword],
+      queryFn: () => settingsApi.getSettings(keyword)
     });
 
     return {

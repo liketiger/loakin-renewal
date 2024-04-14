@@ -3,8 +3,8 @@ import { settingsQuery } from '../api/query';
 import { RaidSettingsParams } from '../types/parameter';
 
 export const settingsRepository = {
-  useSettingsGet: () => {
-    const { data } = settingsQuery.useSettingsGet();
+  useSettingsGet: (keyword: string) => {
+    const { data } = settingsQuery.useSettingsGet(keyword);
 
     return {
       data

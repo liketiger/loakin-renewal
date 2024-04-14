@@ -2,7 +2,7 @@ import { createSupabaseSettings, deleteAllSupabaseSettings, deleteSupabseSetting
 import { RaidSettingsParams } from "../types/parameter";
 
 const url = {
-    getSettings: () => getSupabaseSettings(),
+    getSettings: (keyword: string) => getSupabaseSettings(keyword),
     getManagableVariable: (params: string) => getSupabaseManagableVariable(params),
     createSettings: () => createSupabaseSettings(),
     updateSettings: (data: RaidSettingsParams) => updateSupabaseSettings(data),
@@ -11,7 +11,7 @@ const url = {
 }
 
 export const settingsApi = {
-    getSettings: () => url.getSettings(),
+    getSettings: (keyword: string) => url.getSettings(keyword),
     getManagableVariable: (params: string) => url.getManagableVariable(params),
     createSettings: () => url.createSettings(),
     updateSettings: (data: RaidSettingsParams) => url.updateSettings(data),
