@@ -4,11 +4,16 @@ import { ScheduleDetailPartyMembersContext } from './context';
 export { useProvider as useScheduleDetailPartyMembersProvider };
 
 const useProvider = () => {
-  const { onPartyMembersCreate, onPartyMembersDeleteAll } = useContext(
-    ScheduleDetailPartyMembersContext
-  );
+  const {
+    onPartyMembersCreate,
+    onPartyMembersDeleteAll,
+    isPartyMembersCreatePending,
+    isPartyMembersDeleteAllPending
+  } = useContext(ScheduleDetailPartyMembersContext);
   return {
     onPartyMembersCreate,
-    onPartyMembersDeleteAll
+    onPartyMembersDeleteAll,
+    isPartyMembersCreatePending,
+    isPartyMembersDeleteAllPending
   };
 };

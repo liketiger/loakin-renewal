@@ -6,8 +6,8 @@ import { ScheduleDetailRaidTableRow } from './RaidTableRow';
 export { RaidTableList as ScheduleDetailRaidTableList };
 
 const RaidTableList = () => {
-    const { raidList } = useRaidSchedulesRowProvider();
-    const isListEmpty = raidList?.length === 0;
+  const { raidList } = useRaidSchedulesRowProvider();
+  const isListEmpty = raidList?.length === 0;
   return (
     <>
       {isListEmpty && <NoResult colsapn={4} />}
@@ -18,4 +18,3 @@ const RaidTableList = () => {
     </>
   );
 };
-

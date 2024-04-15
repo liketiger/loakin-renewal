@@ -13,8 +13,8 @@ const useQueryLogic = () => {
   const navigate = useNavigate();
 
   
-  const { run: onRaidCreate } = scheduleDetailRepository.useRaidCreate(date!);
-  const { run: onRaidDeleteAll } = scheduleDetailRepository.useAllRaidDelete(date!);
+  const { run: onRaidCreate, isPending: isRaidCreatePending } = scheduleDetailRepository.useRaidCreate(date!);
+  const { run: onRaidDeleteAll, isPending: isRaidDeleteAllPending } = scheduleDetailRepository.useAllRaidDelete(date!);
 
   useEffect(() => {
     if (!dateParams) navigate('/');
@@ -23,6 +23,8 @@ const useQueryLogic = () => {
 
   return {
     onRaidCreate,
-    onRaidDeleteAll
+    onRaidDeleteAll,
+    isRaidCreatePending,
+    isRaidDeleteAllPending
   };
 };

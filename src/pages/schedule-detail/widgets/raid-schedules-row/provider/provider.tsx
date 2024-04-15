@@ -9,11 +9,31 @@ interface Props {
 }
 
 const Provider = ({ children }: Props) => {
-  const { onRaidCreate, onRaidDelete, onRaidUpdate, raidList } =
-    useRaidSchedulesRowQueryLogic();
+  const {
+    onRaidCreate,
+    onRaidDelete,
+    onRaidUpdate,
+    raidList,
+    isRaidCreatePending,
+    isRaidDeletePending
+  } = useRaidSchedulesRowQueryLogic();
   const value = useMemo(
-    () => ({ onRaidCreate, onRaidDelete, onRaidUpdate, raidList }),
-    [onRaidCreate, onRaidDelete, onRaidUpdate, raidList]
+    () => ({
+      onRaidCreate,
+      onRaidDelete,
+      onRaidUpdate,
+      raidList,
+      isRaidCreatePending,
+      isRaidDeletePending
+    }),
+    [
+      onRaidCreate,
+      onRaidDelete,
+      onRaidUpdate,
+      raidList,
+      isRaidCreatePending,
+      isRaidDeletePending
+    ]
   );
   return (
     <RaidSchedulesRowContext.Provider value={value}>

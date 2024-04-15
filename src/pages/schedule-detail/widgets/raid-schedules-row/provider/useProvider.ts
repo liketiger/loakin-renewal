@@ -4,13 +4,21 @@ import { RaidSchedulesRowContext } from './context';
 export { useProvider as useRaidSchedulesRowProvider };
 
 const useProvider = () => {
-    const { onRaidCreate, onRaidDelete, onRaidUpdate, raidList } = useContext(RaidSchedulesRowContext);
+  const {
+    onRaidCreate,
+    onRaidDelete,
+    onRaidUpdate,
+    raidList,
+    isRaidCreatePending,
+    isRaidDeletePending
+  } = useContext(RaidSchedulesRowContext);
 
-    return {
-        raidList,
-        onRaidCreate,
-        onRaidDelete,
-        onRaidUpdate
-    }
+  return {
+    raidList,
+    onRaidCreate,
+    onRaidDelete,
+    onRaidUpdate,
+    isRaidCreatePending,
+    isRaidDeletePending
+  };
 };
-

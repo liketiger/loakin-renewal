@@ -12,11 +12,11 @@ const useQueryLogic = () => {
   );
   const { data: partyMembersList } =
     scheduleDetailRepository.usePartyMembersGet(+raidId!);
-  const { run: onPartyMembersCreate } =
+  const { run: onPartyMembersCreate, isPending: isPartyMembersCreatePending } =
     scheduleDetailRepository.usePartyMembersCreate(+raidId!);
   const { run: onPartyMembersUpdate } =
     scheduleDetailRepository.usePartyMembersUpdate(+raidId!);
-  const { run: onPartyMembersDelete } =
+  const { run: onPartyMembersDelete, isPending: isPartyMembersDeletePending } =
     scheduleDetailRepository.usePartyMembersDelete(+raidId!);
 
   useEffect(() => {
@@ -27,6 +27,8 @@ const useQueryLogic = () => {
     onPartyMembersCreate,
     onPartyMembersUpdate,
     onPartyMembersDelete,
-    partyMembersList
+    partyMembersList,
+    isPartyMembersCreatePending,
+    isPartyMembersDeletePending
   };
 };

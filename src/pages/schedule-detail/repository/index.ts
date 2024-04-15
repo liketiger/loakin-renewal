@@ -16,9 +16,10 @@ export const scheduleDetailRepository = {
     };
   },
   useRaidCreate: (date: string) => {
-    const { mutate } = scheduleDetailMutation.useRaidCreate(date);
+    const { mutate, isPending } = scheduleDetailMutation.useRaidCreate(date);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   },
   useRaidUpdate: (date: string) => {
@@ -28,16 +29,18 @@ export const scheduleDetailRepository = {
     };
   },
   useRaidDelete: (date: string) => {
-    const { mutate } = scheduleDetailMutation.useRaidDelete(date);
+    const { mutate, isPending } = scheduleDetailMutation.useRaidDelete(date);
     return {
-      run: (id: number) => mutate(id)
+      run: (id: number) => mutate(id),
+      isPending
     };
   },
 
   useAllRaidDelete: (date: string) => {
-    const { mutate } = scheduleDetailMutation.useAllRaidDelete(date);
+    const { mutate, isPending } = scheduleDetailMutation.useAllRaidDelete(date);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   },
 
@@ -49,9 +52,11 @@ export const scheduleDetailRepository = {
   },
 
   usePartyMembersCreate: (raidId: number) => {
-    const { mutate } = scheduleDetailMutation.usePartyMembersCreate(raidId);
+    const { mutate, isPending } =
+      scheduleDetailMutation.usePartyMembersCreate(raidId);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   },
 
@@ -63,16 +68,20 @@ export const scheduleDetailRepository = {
   },
 
   usePartyMembersDelete: (raidId: number) => {
-    const { mutate } = scheduleDetailMutation.usePartyMembersDelete(raidId);
+    const { mutate, isPending } =
+      scheduleDetailMutation.usePartyMembersDelete(raidId);
     return {
-      run: (id: number) => mutate(id)
+      run: (id: number) => mutate(id),
+      isPending
     };
   },
 
   usePartyMembersDeleteAll: (raidId: number) => {
-    const { mutate } = scheduleDetailMutation.usePartyMembersDeleteAll(raidId);
+    const { mutate, isPending } =
+      scheduleDetailMutation.usePartyMembersDeleteAll(raidId);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   }
 };

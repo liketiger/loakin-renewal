@@ -5,7 +5,7 @@ import { PartyMembersParams, RaidParams } from '../types/parameter';
 export const scheduleDetailMutation = {
   useRaidCreate: (date: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => scheduleDetailApi.createRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -14,7 +14,8 @@ export const scheduleDetailMutation = {
       },
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
   useRaidUpdate: (date: string) => {
@@ -33,7 +34,7 @@ export const scheduleDetailMutation = {
   },
   useRaidDelete: (date: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: (id: number) => scheduleDetailApi.deleteRaid(id),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -42,13 +43,14 @@ export const scheduleDetailMutation = {
       }
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
   useAllRaidDelete: (date: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => scheduleDetailApi.deleteAllRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -57,13 +59,14 @@ export const scheduleDetailMutation = {
       },
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
   usePartyMembersCreate: (raidId: number) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => scheduleDetailApi.createPartyMembers(raidId),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -73,7 +76,8 @@ export const scheduleDetailMutation = {
 
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
@@ -94,7 +98,7 @@ export const scheduleDetailMutation = {
 
   usePartyMembersDelete: (raidId: number) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: (id: number) => scheduleDetailApi.deletePartyMembers(id),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -103,13 +107,14 @@ export const scheduleDetailMutation = {
       },
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
   usePartyMembersDeleteAll: (raidId: number) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => scheduleDetailApi.deleteAllPartyMembers(raidId),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
@@ -118,7 +123,8 @@ export const scheduleDetailMutation = {
       },
     });
     return {
-      mutate
+      mutate,
+      isPending
     };
   }
 };

@@ -8,9 +8,10 @@ interface Props {
   sx?: CSSProperties;
   onChange?: () => void;
   padding?: string;
+  placeholder?: string;
 }
 
-export const HookFormInput = ({ name, onBlur, onChange, sx, padding }: Props) => {
+export const HookFormInput = ({ name, onBlur, onChange, sx, padding, ...props }: Props) => {
   const { control } = useFormContext();
   const {
     field: { value, onChange: onHookFormChange },
@@ -32,6 +33,7 @@ export const HookFormInput = ({ name, onBlur, onChange, sx, padding }: Props) =>
         onBlur={onSubmit}
         sx={{ width: '100%' }}
         inputProps={{ style: { padding } }}
+        {...props}
       />
     </Box>
   );

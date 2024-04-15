@@ -1,4 +1,4 @@
-import { TableRow } from '@mui/material';
+import { Backdrop, CircularProgress, TableRow } from '@mui/material';
 import dayjs from 'dayjs';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
@@ -35,7 +35,10 @@ const RaidTableRow = ({ item }: Props) => {
   });
   const actions = {
     onCreate: onRaidCreate,
-    onDelete: () => onRaidDelete(item.id),
+    onDelete: () => {
+      onRaidDelete(item.id);
+      navigate(`/schedule-detail/${date}`);
+    },
     onDetail: () => {
       navigate(`/schedule-detail/${date}/${item.id}`);
     }

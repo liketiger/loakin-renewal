@@ -7,13 +7,7 @@ export const getSupabaseSettings = async (keyword?: string) => {
     .select('*')
     .or(`level.ilike.%${keyword}%, name.ilike.%${keyword}%`)
 
-  //   if (keyword) {
-  //     query = query.ilike('name', `%${keyword}%`).or(`level.ilike.%${keyword}%`);
-  //   }
-
   const { data, error } = await query;
-
-  console.log(keyword);
 
   if (error) throw new Error('Supabase에서 Settings를 가져올 수 없습니다.');
 

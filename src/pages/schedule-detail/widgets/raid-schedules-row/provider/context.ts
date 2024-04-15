@@ -8,6 +8,8 @@ interface Props {
     onRaidDelete: (id: number) => void;
     onRaidUpdate: (params: RaidParams) => void;
     raidList?: RaidView[];
+    isRaidCreatePending: boolean;
+    isRaidDeletePending: boolean;
 }
 
 export {context as RaidSchedulesRowContext};
@@ -15,5 +17,7 @@ export {context as RaidSchedulesRowContext};
 const context = createContext<Props>({
     onRaidCreate: voidFn,
     onRaidDelete: voidFn,
-    onRaidUpdate: voidFn
+    onRaidUpdate: voidFn,
+    isRaidCreatePending: false,
+    isRaidDeletePending: false
 });

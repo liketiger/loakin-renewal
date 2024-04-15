@@ -1,3 +1,4 @@
+import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HookFormInput } from '../../../../../components/common/HookFormInput';
@@ -11,11 +12,18 @@ export const RaidSettingsSearchInput = () => {
     }
   });
   const onChange = methods.handleSubmit((data) => {
-    setKeyword(data.keyword)});
+    setKeyword(data.keyword);
+  });
   return (
     <FormProvider {...methods}>
-      <Box>
-        <HookFormInput name='keyword' onChange={onChange} padding='5px' />
+      <Box sx={{ position: 'relative' }}>
+        <HookFormInput
+          name='keyword'
+          onChange={onChange}
+          padding='5px'
+          placeholder='검색'
+        />
+        <SearchIcon sx={{ position: 'absolute', top: '5px', right: '5px' }} />
       </Box>
     </FormProvider>
   );

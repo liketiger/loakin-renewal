@@ -8,6 +8,8 @@ interface State {
   onPartyMembersCreate: () => void;
   onPartyMembersUpdate: (params: PartyMembersParams) => void;
   onPartyMembersDelete: (id: number) => void;
+  isPartyMembersCreatePending: boolean;
+  isPartyMembersDeletePending: boolean;
 }
 
 export { context as ScheduleDetailPartyMembersRowContext };
@@ -16,4 +18,6 @@ const context = createContext<State>({
   onPartyMembersCreate: voidFn,
   onPartyMembersUpdate: voidFn,
   onPartyMembersDelete: voidFn,
+  isPartyMembersCreatePending: false,
+  isPartyMembersDeletePending: false
 });
