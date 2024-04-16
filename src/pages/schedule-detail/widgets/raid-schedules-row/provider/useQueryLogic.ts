@@ -8,9 +8,9 @@ const useQueryLogic = () => {
   const { data: raidList } = scheduleDetailRepository.useRaidGet(date);
   const { run: onRaidCreate, isPending: isRaidCreatePending } =
     scheduleDetailRepository.useRaidCreate(date!);
-  const { run: onRaidUpdate } = scheduleDetailRepository.useRaidUpdate(date!);
+  const { run: onRaidUpdate } = scheduleDetailRepository.useRaidUpdate();
   const { run: onRaidDelete, isPending: isRaidDeletePending } =
-    scheduleDetailRepository.useRaidDelete(date!);
+    scheduleDetailRepository.useRaidDelete();
 
   return {
     raidList,

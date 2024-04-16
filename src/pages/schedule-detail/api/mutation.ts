@@ -9,7 +9,7 @@ export const scheduleDetailMutation = {
       mutationFn: () => scheduleDetailApi.createRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['schedule', 'raids', date]
+          queryKey: ['schedule', 'raids']
         });
       },
     });
@@ -18,13 +18,13 @@ export const scheduleDetailMutation = {
       isPending
     };
   },
-  useRaidUpdate: (date: string) => {
+  useRaidUpdate: () => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
       mutationFn: (data: RaidParams) => scheduleDetailApi.updateRaids(data),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['schedule', 'raids', date]
+          queryKey: ['schedule', 'raids']
         });
       },
     });
@@ -32,13 +32,13 @@ export const scheduleDetailMutation = {
       mutate
     };
   },
-  useRaidDelete: (date: string) => {
+  useRaidDelete: () => {
     const queryClient = useQueryClient();
     const { mutate, isPending } = useMutation({
       mutationFn: (id: number) => scheduleDetailApi.deleteRaid(id),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['schedule', 'raids', date]
+          queryKey: ['schedule', 'raids']
         });
       }
     });
@@ -54,7 +54,7 @@ export const scheduleDetailMutation = {
       mutationFn: () => scheduleDetailApi.deleteAllRaids(date),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['schedule', 'raids', date]
+          queryKey: ['schedule', 'raids']
         });
       },
     });

@@ -9,13 +9,15 @@ interface Props {
 }
 
 const Provider = ({ children }: Props) => {
-  const { onSettingsCreate, onSettingsDeleteAll } = useRaidSettingsQueryLogic();
+  const { onSettingsCreate, onSettingsDeleteAll, isSettingsCreatePending, isSettingsDeleteAllPending } = useRaidSettingsQueryLogic();
   const value = useMemo(
     () => ({
       onSettingsCreate,
-      onSettingsDeleteAll
+      onSettingsDeleteAll,
+      isSettingsCreatePending,
+      isSettingsDeleteAllPending
     }),
-    [onSettingsCreate, onSettingsDeleteAll]
+    [onSettingsCreate, onSettingsDeleteAll, isSettingsCreatePending, isSettingsDeleteAllPending]
   );
   return (
     <RaidSettingsContext.Provider value={value}>

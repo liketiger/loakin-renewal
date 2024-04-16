@@ -1,6 +1,7 @@
 import { Modal, TableBody, TableRow } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useShallow } from 'zustand/react/shallow';
+import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
 import { HookFormTimePicker } from '../../../../../components/common/HookFormTimePicker';
 import { CommonTable } from '../../../../../components/table/CommonTable';
 import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
@@ -8,9 +9,7 @@ import { Td } from '../../../../../components/table/Td';
 import { Th } from '../../../../../components/table/Th';
 import { useScheduleDetailsState } from '../../../usetState';
 import { getRaidModalFormValues } from '../../../utils';
-import { useRaidScheduleProvider } from '../../raid-schedules/provider/useProvider';
 import { useRaidDetailsModalProvider } from '../provider/useProvider';
-import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
 
 export const RaidDetailsModal = () => {
   const { raidDetails } = useRaidDetailsModalProvider();

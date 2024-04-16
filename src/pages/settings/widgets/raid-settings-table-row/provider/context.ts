@@ -8,6 +8,8 @@ interface State {
   onSettingsCreate: () => void;
   onSettingsDelete: (id: number) => void;
   onSettingsUpdate: (data: RaidSettingsParams) => void;
+  isSettingsCreatePending: boolean;
+  isSettingsDeletePending: boolean;
 }
 
 export { context as RaidSettingsRowContext };
@@ -15,5 +17,7 @@ export { context as RaidSettingsRowContext };
 const context = createContext<State>({
   onSettingsCreate: voidFn,
   onSettingsDelete: voidFn,
-  onSettingsUpdate: voidFn
+  onSettingsUpdate: voidFn,
+  isSettingsCreatePending: false,
+  isSettingsDeletePending: false
 });

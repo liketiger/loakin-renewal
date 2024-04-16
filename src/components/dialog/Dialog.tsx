@@ -1,17 +1,20 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Modal, Paper, Typography } from '@mui/material';
+import { Box, Button, Modal, Paper, Typography } from '@mui/material';
 import { useShallow } from 'zustand/react/shallow';
 import { useAppState } from './useState';
 
 export const Dialog = () => {
-  const { isOpen, setIsOpen, title, description } = useAppState(
-    useShallow((state) => ({
-      isOpen: state.isOpen,
-      setIsOpen: state.setIsOpen,
-      title: state.title,
-      description: state.description
-    }))
-  );
+  const { isOpen, setIsOpen, title, description, onConfirm, isConfirm } =
+    useAppState(
+      useShallow((state) => ({
+        isOpen: state.isOpen,
+        setIsOpen: state.setIsOpen,
+        title: state.title,
+        description: state.description,
+        onConfirm: state.onConfirm,
+        isConfirm: state.isConfirm
+      }))
+    );
 
   return (
     <Modal
@@ -36,6 +39,14 @@ export const Dialog = () => {
         >
           <Typography>{description}</Typography>
         </Box>
+        {isConfirm && (
+          <Box
+            sx={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}
+          >
+            <Button onClick={onConfirm}>확인</Button>
+            <Button onClick={() => setIsOpen(false)}>취소</Button>
+          </Box>
+        )}
       </Paper>
     </Modal>
   );

@@ -3,30 +3,31 @@ import { settingsApi } from '.';
 import { RaidSettingsParams } from '../types/parameter';
 
 export const settingsMutation = {
-  useSettingsCreate: () => {
+  useSettingsCreate: (keyword: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => settingsApi.createSettings(),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['settings']
+          queryKey: ['settings', keyword]
         });
       }
     });
 
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
-  useSettingsUpdate: () => {
+  useSettingsUpdate: (keyword: string) => {
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
       mutationFn: (data: RaidSettingsParams) =>
         settingsApi.updateSettings(data),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['settings']
+          queryKey: ['settings', keyword]
         });
       }
     });
@@ -36,35 +37,37 @@ export const settingsMutation = {
     };
   },
 
-  useSettingsDelete: () => {
+  useSettingsDelete: (keyword: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: (id: number) => settingsApi.deleteSettings(id),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['settings']
+          queryKey: ['settings', keyword]
         });
       }
     });
 
     return {
-      mutate
+      mutate,
+      isPending
     };
   },
 
-  useSettingsDeleteAll: () => {
+  useSettingsDeleteAll: (keyword: string) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
       mutationFn: () => settingsApi.deleteAllSettings(),
       onSuccess: async () => {
         await queryClient.invalidateQueries({
-          queryKey: ['settings']
+          queryKey: ['settings', keyword]
         });
       }
     });
 
     return {
-      mutate
+      mutate,
+      isPending
     };
   }
 };

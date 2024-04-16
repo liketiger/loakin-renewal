@@ -25,7 +25,9 @@ const PartyMembersTable = () => {
     isPartyMembersDeleteAllPending
   } = useScheduleDetailPartyMembersProvider();
   const memberCount = useScheduleDetailsState((state) => state.memberCount);
-  const { alert } = useDialog();
+
+  const { alert, confirm } = useDialog();
+
   const actions = {
     onCreate: () => {
       if (memberCount === 8) {
@@ -34,7 +36,13 @@ const PartyMembersTable = () => {
       }
       onPartyMembersCreate();
     },
-    onDeleteAll: () => onPartyMembersDeleteAll()
+    onDeleteAll: () => {
+      confirm({
+        title: '삭제 확인',
+        description: '전체 삭제하시겠습니까?',
+        onConfirm: onPartyMembersDeleteAll
+      });
+    }
   };
   return (
     <>

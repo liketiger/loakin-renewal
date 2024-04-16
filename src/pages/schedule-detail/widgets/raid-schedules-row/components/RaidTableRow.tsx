@@ -1,16 +1,17 @@
-import { Backdrop, CircularProgress, TableRow } from '@mui/material';
+import { TableRow } from '@mui/material';
 import dayjs from 'dayjs';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
 import { HookFormTimePicker } from '../../../../../components/common/HookFormTimePicker';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
+import { useDialog } from '../../../../../components/dialog/useDialog';
 import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
-import { RaidView } from '../../../types/view';
-import { useRaidSchedulesRowProvider } from '../provider/useProvider';
 import { ColorPalette } from '../../../../../utils/colors';
-import { useNavigate, useParams } from 'react-router-dom';
+import { RaidView } from '../../../types/view';
 import { useScheduleDetailsState } from '../../../usetState';
+import { useRaidSchedulesRowProvider } from '../provider/useProvider';
 
 export { RaidTableRow as ScheduleDetailRaidTableRow };
 
@@ -33,11 +34,20 @@ const RaidTableRow = ({ item }: Props) => {
       time: item.time ? dayjs(item.time) : ''
     }
   });
+
+  const { confirm } = useDialog();
+
   const actions = {
     onCreate: onRaidCreate,
     onDelete: () => {
-      onRaidDelete(item.id);
-      navigate(`/schedule-detail/${date}`);
+      confirm({
+        title: '삭제 확인',
+        description: '삭제하시겠습니까?',
+        onConfirm: () => {
+          onRaidDelete(item.id);
+          navigate(`/schedule-detail/${date}`);
+        }
+      });
     },
     onDetail: () => {
       navigate(`/schedule-detail/${date}/${item.id}`);

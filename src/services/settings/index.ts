@@ -2,10 +2,11 @@ import { RaidSettingsParams } from '../../pages/settings/types/parameter';
 import supabase from '../supabase';
 
 export const getSupabaseSettings = async (keyword?: string) => {
-  const query = supabase
-    .from('settings')
-    .select('*')
-    .or(`level.ilike.%${keyword}%, name.ilike.%${keyword}%`)
+  let query = supabase.from('settings').select('*');
+
+  if (keyword) {
+    query = query.or(`level.ilike.%${keyword}%, name.ilike.%${keyword}%`);
+  }
 
   const { data, error } = await query;
 
@@ -45,7 +46,7 @@ export const deleteSupabseSettings = async (id: number) => {
 };
 
 export const deleteAllSupabaseSettings = async () => {
-  const { error } = await supabase.from('settings').delete();
+  const { error } = await supabase.from('settings').delete().gt('id', 0);
 
   if (error) throw new Error('Supabase에서 Settings를 전체삭제할 수 없습니다.');
 };

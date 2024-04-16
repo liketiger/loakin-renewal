@@ -22,14 +22,14 @@ export const scheduleDetailRepository = {
       isPending
     };
   },
-  useRaidUpdate: (date: string) => {
-    const { mutate } = scheduleDetailMutation.useRaidUpdate(date);
+  useRaidUpdate: () => {
+    const { mutate } = scheduleDetailMutation.useRaidUpdate();
     return {
       run: (data: RaidParams) => mutate(data)
     };
   },
-  useRaidDelete: (date: string) => {
-    const { mutate, isPending } = scheduleDetailMutation.useRaidDelete(date);
+  useRaidDelete: () => {
+    const { mutate, isPending } = scheduleDetailMutation.useRaidDelete();
     return {
       run: (id: number) => mutate(id),
       isPending

@@ -8,10 +8,10 @@ import {
     useContext,
     useState
 } from 'react';
-import { ModalContext } from '../../type';
+import { ModalContext as ModalContextType } from '../../type';
 import { voidFn } from '../../utils';
 
-const ModalContext = createContext<ModalContext>({
+const ModalContext = createContext<ModalContextType>({
   open: voidFn,
   close: voidFn,
   openName: ''

@@ -17,31 +17,34 @@ export const settingsRepository = {
       data
     };
   },
-  useSettingsCreate: () => {
-    const { mutate } = settingsMutation.useSettingsCreate();
+  useSettingsCreate: (keyword: string) => {
+    const { mutate, isPending } = settingsMutation.useSettingsCreate(keyword);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   },
 
-  useSettingsUpdate: () => {
-    const { mutate } = settingsMutation.useSettingsUpdate();
+  useSettingsUpdate: (keyword: string) => {
+    const { mutate } = settingsMutation.useSettingsUpdate(keyword);
     return {
       run: (data: RaidSettingsParams) => mutate(data)
     };
   },
 
-  useSettingsDelete: () => {
-    const { mutate } = settingsMutation.useSettingsDelete();
+  useSettingsDelete: (keyword: string) => {
+    const { mutate, isPending } = settingsMutation.useSettingsDelete(keyword);
     return {
-      run: (id: number) => mutate(id)
+      run: (id: number) => mutate(id),
+      isPending
     };
   },
 
-  useSettingsDeleteAll: () => {
-    const { mutate } = settingsMutation.useSettingsDeleteAll();
+  useSettingsDeleteAll: (keyword: string) => {
+    const { mutate, isPending } = settingsMutation.useSettingsDeleteAll(keyword);
     return {
-      run: () => mutate()
+      run: () => mutate(),
+      isPending
     };
   }
 };

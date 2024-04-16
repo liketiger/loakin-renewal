@@ -1,17 +1,14 @@
 import { TableRow } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { HookFormSelect } from '../../../../../components/common/HookFormSelect';
-import { HookFormTimePicker } from '../../../../../components/common/HookFormTimePicker';
+import { HookFormText } from '../../../../../components/common/HookFormText';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
+import { useDialog } from '../../../../../components/dialog/useDialog';
 import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
 import { PartyMembersView } from '../../../types/view';
-import { useScheduleDetailPartyMembersRowProvider } from '../provider/useProvider';
-import { HookFormText } from '../../../../../components/common/HookFormText';
 import { useScheduleDetailsState } from '../../../usetState';
-import { useShallow } from 'zustand/react/shallow';
-import { useDialog } from '../../../../../components/dialog/useDialog';
+import { useScheduleDetailPartyMembersRowProvider } from '../provider/useProvider';
 
 export { PartyMembersTableRow as ScheduleDetailPartyMembersTableRow };
 
@@ -32,16 +29,24 @@ const PartyMembersTableRow = ({ item }: Props) => {
       userName: item.userName ?? ''
     }
   });
-  const {alert} = useDialog();
+  
+  const { alert, confirm } = useDialog();
+
   const actions = {
     onCreate: () => {
       if (memberCount === 8) {
-        alert({title: '알림', description: '8명이상 등록할 수 없습니다'});
+        alert({ title: '알림', description: '8명이상 등록할 수 없습니다' });
         return;
       }
       onPartyMembersCreate();
     },
-    onDelete: () => onPartyMembersDelete(item.id)
+    onDelete: () => {
+      confirm({
+        title: '삭제 확인',
+        description: '삭제하시겠습니까?',
+        onConfirm: () => onPartyMembersDelete(item.id)
+      });
+    }
   };
 
   const onSubmit = methods.handleSubmit((data) => {

@@ -4,7 +4,7 @@ import { RaidSettingsContext } from './context';
 export { useProvider as useRaidSettingsProvider };
 
 const useProvider = () => {
-  const { onSettingsCreate, onSettingsDeleteAll } =
+  const { onSettingsCreate, onSettingsDeleteAll, isSettingsCreatePending, isSettingsDeleteAllPending } =
     useContext(RaidSettingsContext);
-  return { onSettingsCreate, onSettingsDeleteAll };
+  return { onSettingsCreate, onSettingsDeleteAll, isSettingsCreatePending, isSettingsDeleteAllPending };
 };

@@ -1,11 +1,11 @@
 import { TableRow } from '@mui/material';
-import React from 'react';
-import { Td } from '../../../../../components/table/Td';
-import { HookFormInput } from '../../../../../components/common/HookFormInput';
 import { FormProvider, useForm } from 'react-hook-form';
-import { RaidSettingsParams } from '../../../types/parameter';
+import { HookFormInput } from '../../../../../components/common/HookFormInput';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
+import { useDialog } from '../../../../../components/dialog/useDialog';
+import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
+import { RaidSettingsParams } from '../../../types/parameter';
 import { useRaidSettingsRowProvider } from '../provider/useProvider';
 
 interface Props {
@@ -22,9 +22,16 @@ export const RaidSettingsTableRow = ({ item }: Props) => {
       level: item.level ?? ''
     }
   });
+  const { confirm } = useDialog();
   const actions = {
     onCreate: onSettingsCreate,
-    onDelete: () => onSettingsDelete(item.id)
+    onDelete: () => {
+      confirm({
+        title: '삭제 확인',
+        description: '삭제하시겠습니까?',
+        onConfirm: () => onSettingsDelete(item.id)
+      });
+    }
   };
   const onSubmit = methods.handleSubmit((data) => onSettingsUpdate(data));
   return (

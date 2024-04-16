@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ControlPanel } from '../../../../../components/control-pannel/ControlPannel';
-import TableSpinner from '../../../../../components/show-data/TableSpinner';
+import { useDialog } from '../../../../../components/dialog/useDialog';
 import { CommonTable } from '../../../../../components/table/CommonTable';
 import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
 import { Th } from '../../../../../components/table/Th';
@@ -27,11 +27,20 @@ const RaidTable = () => {
   } = useRaidScheduleProvider();
   const navigate = useNavigate();
   const date = useScheduleDetailsState((state) => state.date);
+
+  const { confirm } = useDialog();
+
   const actions = {
     onCreate: onRaidCreate,
     onDeleteAll: () => {
-      onRaidDeleteAll();
-      navigate(`/schedule-detail/${date}`);
+      confirm({
+        title: '삭제 확인',
+        description: '전체 삭제하시겠습니까?',
+        onConfirm: () => {
+          onRaidDeleteAll();
+          navigate(`/schedule-detail/${date}`);
+        }
+      });
     }
   };
   return (

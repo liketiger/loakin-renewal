@@ -1,17 +1,18 @@
 import { Backdrop, CircularProgress, TableRow } from '@mui/material';
-import { useRaidSchedulesRowProvider } from '../provider/useProvider';
-import { Td } from '../../../../../components/table/Td';
+import {
+  useRaidSettingsRowProvider
+} from '../provider/useProvider';
 
-export { BackdropWrapper as RaidBackdropWrapper };
+export { BackdropWrapper as SettingsBackdropWrapper };
 
 const BackdropWrapper = () => {
-  const { isRaidCreatePending, isRaidDeletePending } =
-    useRaidSchedulesRowProvider();
+  const { isSettingsCreatePending, isSettingsDeletePending } =
+    useRaidSettingsRowProvider();
   return (
     <TableRow>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={isRaidCreatePending || isRaidDeletePending}
+        open={isSettingsCreatePending || isSettingsDeletePending}
         component='td'
       >
         <CircularProgress color='inherit' />
