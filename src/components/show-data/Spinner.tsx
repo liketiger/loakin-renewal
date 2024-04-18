@@ -14,7 +14,6 @@ const Spinner = ({
   padding = '20px',
   sx
 }: Props) => {
-  console.log('hi');
 
   return (
     <Box

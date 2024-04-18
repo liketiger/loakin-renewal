@@ -10,7 +10,8 @@ const useProvider = () => {
     onRaidUpdate,
     raidList,
     isRaidCreatePending,
-    isRaidDeletePending
+    isRaidDeletePending,
+    raidOptionList,
   } = useContext(RaidSchedulesRowContext);
 
   return {
@@ -19,6 +20,7 @@ const useProvider = () => {
     onRaidDelete,
     onRaidUpdate,
     isRaidCreatePending,
-    isRaidDeletePending
+    isRaidDeletePending,
+    raidOptionList
   };
 };

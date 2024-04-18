@@ -27,3 +27,8 @@ export interface ModalContext {
   open: (name: string) => void;
   openName: string;
 }
+
+export interface Option {
+  label: string;
+  value: string;
+}

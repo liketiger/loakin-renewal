@@ -8,10 +8,12 @@ import { ControlPanel } from '../../../../../components/control-pannel/ControlPa
 import { useDialog } from '../../../../../components/dialog/useDialog';
 import { Td } from '../../../../../components/table/Td';
 import { getCommonControlPanelItemList } from '../../../../../constants';
+import { convertToOptionList } from '../../../../../utils';
 import { ColorPalette } from '../../../../../utils/colors';
 import { RaidView } from '../../../types/view';
 import { useScheduleDetailsState } from '../../../usetState';
 import { useRaidSchedulesRowProvider } from '../provider/useProvider';
+import { levelOptionList } from '../../../utils/constants';
 
 export { RaidTableRow as ScheduleDetailRaidTableRow };
 
@@ -20,8 +22,12 @@ type Props = {
 };
 
 const RaidTableRow = ({ item }: Props) => {
-  const { onRaidCreate, onRaidDelete, onRaidUpdate } =
-    useRaidSchedulesRowProvider();
+  const {
+    onRaidCreate,
+    onRaidDelete,
+    onRaidUpdate,
+    raidOptionList,
+  } = useRaidSchedulesRowProvider();
   const navigate = useNavigate();
   const date = useScheduleDetailsState((state) => state.date);
   const { raidId } = useParams();
@@ -74,10 +80,7 @@ const RaidTableRow = ({ item }: Props) => {
         <Td>
           <HookFormSelect
             name='name'
-            optionList={[
-              { label: 'test', value: '1' },
-              { label: 'test2', value: '2' }
-            ]}
+            optionList={convertToOptionList(raidOptionList ?? [])}
             defaultValue='선택'
             onSubmit={onSubmit}
           />
@@ -85,10 +88,7 @@ const RaidTableRow = ({ item }: Props) => {
         <Td>
           <HookFormSelect
             name='level'
-            optionList={[
-              { label: 'test', value: '1' },
-              { label: 'test2', value: '2' }
-            ]}
+            optionList={levelOptionList}
             defaultValue='선택'
             onSubmit={onSubmit}
           />

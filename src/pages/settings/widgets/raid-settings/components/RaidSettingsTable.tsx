@@ -46,14 +46,13 @@ export const RaidSettingsTable = () => {
         <CommonTable>
           <TableHead>
             <TableRow>
-              <Th width='1%'>
+              <Th width='50px'>
                 <ControlPanel
                   isHeader={true}
                   itemList={getCommonControlPanelHeaderItemList({ actions })}
                 />
               </Th>
-              <Th width='4%'>레이드명</Th>
-              <Th width='4%'>난이도</Th>
+              <Th width='100%'>레이드명</Th>
             </TableRow>
           </TableHead>
           <TableBody>

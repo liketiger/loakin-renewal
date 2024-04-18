@@ -11,8 +11,8 @@ export const settingsRepository = {
     };
   },
 
-  useManagableVariable: (params: string) => {
-    const { data } = settingsQuery.useManagableVariable(params);
+  useManagableVariable: () => {
+    const { data } = settingsQuery.useManagableVariable();
     return {
       data
     };

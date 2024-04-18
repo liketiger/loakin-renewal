@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { voidFn } from "../../../../../utils";
 import { RaidParams } from "../../../types/parameter";
 import { RaidView } from "../../../types/view";
+import { Option } from "../../../../../type";
 
 interface Props {
     onRaidCreate: () => void;
@@ -10,6 +11,7 @@ interface Props {
     raidList?: RaidView[];
     isRaidCreatePending: boolean;
     isRaidDeletePending: boolean;
+    raidOptionList?: string[];
 }
 
 export {context as RaidSchedulesRowContext};

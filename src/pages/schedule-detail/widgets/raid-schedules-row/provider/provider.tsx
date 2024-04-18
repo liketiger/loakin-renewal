@@ -15,7 +15,8 @@ const Provider = ({ children }: Props) => {
     onRaidUpdate,
     raidList,
     isRaidCreatePending,
-    isRaidDeletePending
+    isRaidDeletePending,
+    raidOptionList,
   } = useRaidSchedulesRowQueryLogic();
   const value = useMemo(
     () => ({
@@ -24,7 +25,8 @@ const Provider = ({ children }: Props) => {
       onRaidUpdate,
       raidList,
       isRaidCreatePending,
-      isRaidDeletePending
+      isRaidDeletePending,
+      raidOptionList,
     }),
     [
       onRaidCreate,
@@ -32,7 +34,8 @@ const Provider = ({ children }: Props) => {
       onRaidUpdate,
       raidList,
       isRaidCreatePending,
-      isRaidDeletePending
+      isRaidDeletePending,
+      raidOptionList,
     ]
   );
   return (

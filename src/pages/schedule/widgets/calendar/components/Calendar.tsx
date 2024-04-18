@@ -5,7 +5,6 @@ import FullCalendar from '@fullcalendar/react';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useNavigate } from 'react-router-dom';
-import { useScheduleDetailsState } from '../../../../schedule-detail/usetState';
 import { convertRaidsToEvents } from '../../../utils';
 import { useScheduleProvider } from '../provider/useProvider';
 
@@ -18,6 +17,10 @@ export const Calendar = () => {
     navigate(`/schedule-detail/${e.dateStr}`);
   };
 
+  const onEventClick = (e: any) => {    
+    navigate(`/schedule-detail/${dayjs(e.event.start).format('YYYY-MM-DD')}`);
+  };
+
   return (
     <FullCalendar
       plugins={[dayGridPlugin, interactionPlugin]}
@@ -28,7 +31,7 @@ export const Calendar = () => {
       }
       dateClick={(e) => onDateClick(e)}
       events={convertRaidsToEvents(raids!)}
-      eventClick={(e) => console.log(e)}
+      eventClick={(e) => onEventClick(e)}
     />
   );
 };

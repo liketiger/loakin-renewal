@@ -19,7 +19,6 @@ export const RaidSettingsTableRow = ({ item }: Props) => {
     values: {
       id: item.id,
       name: item.name ?? '',
-      level: item.level ?? ''
     }
   });
   const { confirm } = useDialog();
@@ -42,9 +41,6 @@ export const RaidSettingsTableRow = ({ item }: Props) => {
         </Td>
         <Td>
           <HookFormInput name='name' onBlur={onSubmit} />
-        </Td>
-        <Td>
-          <HookFormInput name='level' onBlur={onSubmit} />
         </Td>
       </TableRow>
     </FormProvider>

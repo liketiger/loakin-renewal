@@ -10,7 +10,7 @@ const Widget = () => {
   return (
     <ScheduleDetailPartyMembersProvider>
       <Body sx={{ width: '50%' }}>
-        <Header title='파티 멤버' />
+        <Header title='파티 멤버' center={true} />
         <ScheduleDetailPartyMembersTable />
       </Body>
     </ScheduleDetailPartyMembersProvider>

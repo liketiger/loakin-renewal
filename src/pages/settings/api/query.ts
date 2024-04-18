@@ -13,10 +13,10 @@ export const settingsQuery = {
     };
   },
 
-  useManagableVariable: (params: string) => {
+  useManagableVariable: () => {
     const { data } = useSuspenseQuery({
-      queryKey: ['managableVariable', params],
-      queryFn: () => settingsApi.getManagableVariable(params)
+      queryKey: ['managableVariable'],
+      queryFn: () => settingsApi.getManagableVariable()
     });
 
     return {

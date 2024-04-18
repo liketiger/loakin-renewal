@@ -1,3 +1,5 @@
+import { settingsApi } from '../../../../settings/api';
+import { settingsRepository } from '../../../../settings/repository';
 import { scheduleDetailRepository } from '../../../repository';
 import { useScheduleDetailsState } from '../../../usetState';
 
@@ -12,12 +14,15 @@ const useQueryLogic = () => {
   const { run: onRaidDelete, isPending: isRaidDeletePending } =
     scheduleDetailRepository.useRaidDelete();
 
+  const {data: raidOptionList} = settingsRepository.useManagableVariable();
+
   return {
     raidList,
     onRaidCreate,
     onRaidUpdate,
     onRaidDelete,
     isRaidCreatePending,
-    isRaidDeletePending
+    isRaidDeletePending,
+    raidOptionList,
   };
 };

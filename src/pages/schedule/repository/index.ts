@@ -1,8 +1,8 @@
 import { scheduleQuery } from '../api/query';
 
 export const scheduleRepository = {
-  useRaidsGet: (date?: string) => {
-    const { data } = scheduleQuery.useRaidsGet(date);
+  useRaidsGet: () => {
+    const { data } = scheduleQuery.useRaidsGet();
     return {
       data
     };

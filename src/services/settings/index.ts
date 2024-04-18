@@ -15,13 +15,13 @@ export const getSupabaseSettings = async (keyword?: string) => {
   return data.sort((a, b) => a.id - b.id);
 };
 
-export const getSupabaseManagableVariable = async (params: string) => {
-  const { data, error } = await supabase.from('settings').select(params ?? '*');
-
+export const getSupabaseManagableVariable = async () => {
+  const { data, error } = await supabase.from('settings').select('*');
+  
   if (error)
     throw new Error('Supabase에서 ManagableVariable를 가져올 수 없습니다.');
 
-  return data;
+  return Array.from(new Set(data.map((item) => item.name)));
 };
 
 export const createSupabaseSettings = async () => {
