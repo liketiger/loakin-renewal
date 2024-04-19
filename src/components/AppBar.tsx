@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   AppBar as MuiAppBar,
   Toolbar,

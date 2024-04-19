@@ -1,12 +1,12 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal, Paper, Typography } from '@mui/material';
 import {
-    ReactElement,
-    cloneElement,
-    createContext,
-    isValidElement,
-    useContext,
-    useState
+  ReactElement,
+  cloneElement,
+  createContext,
+  isValidElement,
+  useContext,
+  useState
 } from 'react';
 import { ModalContext as ModalContextType } from '../../type';
 import { voidFn } from '../../utils';
@@ -63,7 +63,18 @@ const Window = ({ children, name, title }: WindowProps) => {
 
   return (
     <Modal open onClose={close}>
-      <Paper sx={{ position: 'relative' }}>
+      <Paper
+        sx={{
+          position: 'relative',
+          width: '50dvw',
+          padding: '20px',
+          height: '80dvh',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          paddingTop: '60px'
+        }}
+      >
         <Box
           onClick={close}
           sx={{ position: 'absolute', right: '5px', top: '5px' }}
@@ -71,7 +82,12 @@ const Window = ({ children, name, title }: WindowProps) => {
           <CloseIcon />
         </Box>
         <Box>
-          <Typography>{title}</Typography>
+          <Typography
+            fontWeight='bold'
+            sx={{ position: 'absolute', left: '20px', top: '5px' }}
+          >
+            {title}
+          </Typography>
           {children}
         </Box>
       </Paper>
