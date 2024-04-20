@@ -4,7 +4,9 @@ interface State {
     keyword: string,
     setKeyword: (keyword: string) => void,
     characterName: string,
-    setCharacterName: (characterName: string) => void
+    setCharacterName: (characterName: string) => void,
+    showConfirm?: boolean,
+    setShowConfirm: (showConfirm: boolean) => void
 }
 
 export { useState as useMemberState };
@@ -14,4 +16,5 @@ const useState = create<State>((set) => ({
     setKeyword: (keyword: string) => set({ keyword }),
     characterName: '',
     setCharacterName: (characterName: string) => set({ characterName }),
+    setShowConfirm: (showConfirm: boolean) => set({ showConfirm })
 }))

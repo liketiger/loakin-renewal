@@ -1,15 +1,15 @@
 import { Suspense } from 'react';
-import Spinner from '../../../../components/show-data/Spinner';
-import { MemberModal } from '../search/components/Modal';
+import TableSpinner from '../../../../components/show-data/TableSpinner';
+import { MemberModalTableList } from './components/List';
 import { MemberModalProvider } from './provider/provier';
 
-export { Widget as MemberModalWidget };
+export { Widget as MemberModalListWidget };
 
 const Widget = () => {
   return (
-    <Suspense fallback={<Spinner width='300px' height='300px' />}>
+    <Suspense fallback={<TableSpinner colspan={4} />}>
       <MemberModalProvider>
-        <MemberModal />
+        <MemberModalTableList />
       </MemberModalProvider>
     </Suspense>
   );

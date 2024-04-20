@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal, Paper, Typography } from '@mui/material';
-import {
+import React, {
   ReactElement,
   cloneElement,
   createContext,
@@ -26,10 +26,18 @@ interface OpenProps {
   windowName: string;
 }
 
+interface FooterProps {
+  cancelBtn?: React.ReactNode;
+  confirmBtn?: React.ReactNode;
+  onClose?: () => void;
+  onConfirm?: () => void;
+}
+
 interface WindowProps {
   children: React.ReactNode;
   name: string;
   title: string;
+  onClose?: () => void;
 }
 
 export const CustomModal = ({ children }: ModalProps) => {
@@ -56,19 +64,55 @@ const Open = ({ children, windowName }: OpenProps) => {
   });
 };
 
-const Window = ({ children, name, title }: WindowProps) => {
+const Footer = ({ cancelBtn, confirmBtn, onClose, onConfirm }: FooterProps) => {
+  const { close } = useContext(ModalContext);
+
+  const onCancelClick = () => {
+    onClose?.();
+    close();
+  };
+
+  const onConfirmClick = () => {
+    onConfirm?.();
+    close();
+  };
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '10px',
+        justifyContent: 'right',
+        marginTop: '20px',
+        paddingRight: '10px'
+      }}
+    >
+      {confirmBtn &&
+        cloneElement(confirmBtn as ReactElement, { onClick: onConfirmClick })}
+      {cancelBtn &&
+        cloneElement(cancelBtn as ReactElement, { onClick: onCancelClick })}
+    </Box>
+  );
+};
+
+const Window = ({ children, name, title, onClose }: WindowProps) => {
   const { openName, close } = useContext(ModalContext);
 
   if (name !== openName) return null;
 
+  const onModalClose = () => {
+    onClose?.();
+    close();
+  };
+
   return (
-    <Modal open onClose={close}>
+    <Modal open onClose={onModalClose}>
       <Paper
         sx={{
           position: 'relative',
           width: '50dvw',
           padding: '20px',
-          height: '80dvh',
+          height: 'auto',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -76,7 +120,7 @@ const Window = ({ children, name, title }: WindowProps) => {
         }}
       >
         <Box
-          onClick={close}
+          onClick={onModalClose}
           sx={{ position: 'absolute', right: '5px', top: '5px' }}
         >
           <CloseIcon />
@@ -97,3 +141,4 @@ const Window = ({ children, name, title }: WindowProps) => {
 
 CustomModal.Open = Open;
 CustomModal.Window = Window;
+CustomModal.Footer = Footer;

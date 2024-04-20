@@ -47,8 +47,16 @@ const AppBar = () => {
                 alignItems: 'center'
               }}
             >
-              <Typography onClick={() => navigate('/member')}>멤버</Typography>
-              <Typography sx={{ cursor: 'pointer' }} onClick={() => navigate('/settings')}>
+              <Typography
+                sx={{ cursor: 'pointer' }}
+                onClick={() => navigate('/member')}
+              >
+                멤버
+              </Typography>
+              <Typography
+                sx={{ cursor: 'pointer' }}
+                onClick={() => navigate('/settings')}
+              >
                 설정
               </Typography>
             </Box>
