@@ -4,9 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
   Button,
-  Checkbox,
   TableBody,
-  TableHead,
   TableRow,
   TextField,
   Tooltip,
@@ -16,40 +14,41 @@ import {
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { CustomModal } from '../../../../../components/common/CustomModal';
-import { NoResult } from '../../../../../components/show-data/NoResult';
 import { CommonTable } from '../../../../../components/table/CommonTable';
 import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
 import { Td } from '../../../../../components/table/Td';
 import { Th } from '../../../../../components/table/Th';
 import { ColorPalette } from '../../../../../utils/colors';
 import { useMemberState } from '../../../useState';
-import { MemberModalListWidget } from '../../modal/widget';
+import { MemberModalCharacterTableWidget } from '../../modal/widget';
 
 export { Modal as MemberModal };
 
 const Modal = () => {
-  const { setCharacterName, characterName, showConfirm, setShowConfirm } =
-    useMemberState(
-      useShallow((state) => ({
-        setCharacterName: state.setCharacterName,
-        characterName: state.characterName,
-        showConfirm: state.showConfirm,
-        setShowConfirm: state.setShowConfirm
-      }))
-    );
+  const {
+    setCharacterName,
+    characterName,
+    showConfirm,
+    setShowConfirm,
+    setSelectedCharacterList,
+    selectedCharacterList
+  } = useMemberState(
+    useShallow((state) => ({
+      setCharacterName: state.setCharacterName,
+      characterName: state.characterName,
+      showConfirm: state.showConfirm,
+      setShowConfirm: state.setShowConfirm,
+      setSelectedCharacterList: state.setSelectedCharacterList,
+      selectedCharacterList: state.selectedCharacterList
+    }))
+  );
   const theme = useTheme();
-  const [formData, setFormData] = useState({
-    userName: '',
-    selectedCharacterList: []
-  });
+  const [userName, setUserName] = useState('');
 
   const onClose = () => {
     setCharacterName('');
     setShowConfirm(false);
-    setFormData({
-      userName: '',
-      selectedCharacterList: []
-    });
+    setUserName('');
   };
 
   const onConfirm = () => {
@@ -90,13 +89,8 @@ const Modal = () => {
                   <Th>유저명</Th>
                   <Td align='left'>
                     <TextField
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          userName: e.target.value
-                        }))
-                      }
-                      value={formData.userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      value={userName}
                       sx={{ width: '50%' }}
                       placeholder='ex) 홍길동'
                     />
@@ -147,24 +141,7 @@ const Modal = () => {
               </TableBody>
             </CommonTable>
           </CommonTableContainer>
-          <CommonTableContainer sx={{ maxHeight: '50dvh' }}>
-            <CommonTable stickyHeader={true}>
-              <TableHead>
-                <TableRow>
-                  <Th width='1%'>
-                    <Checkbox />
-                  </Th>
-                  <Th width='8%'>캐릭터명</Th>
-                  <Th width='1%'>아이템 레벨</Th>
-                  <Th width='4%'>클래스</Th>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {!showConfirm && <NoResult colsapn={4} />}
-                {showConfirm && <MemberModalListWidget />}
-              </TableBody>
-            </CommonTable>
-          </CommonTableContainer>
+          {showConfirm && <MemberModalCharacterTableWidget />}
           <CustomModal.Footer
             confirmBtn={<Button>저장</Button>}
             cancelBtn={<Button>취소</Button>}

@@ -1,4 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryErrorResetBoundary
+} from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AppBar from './components/AppBar';
@@ -9,6 +13,8 @@ import { ScheduleDetailPartyMembersWidget } from './pages/schedule-detail/widget
 import { useDialog } from './components/dialog/useDialog';
 import { SettingsPage } from './pages/settings';
 import { MemberPage } from './pages/member';
+import { ErrorBoundary } from 'react-error-boundary';
+import { FallBackUI } from './components/show-data/FallBackUI';
 
 const CustomQueryClientProvider = ({
   children
@@ -19,7 +25,8 @@ const CustomQueryClientProvider = ({
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 300 * 1000
+        staleTime: 300 * 1000,
+        throwOnError: true
       },
       mutations: {
         onError: async (error) => {
@@ -40,22 +47,28 @@ const CustomQueryClientProvider = ({
 function App() {
   return (
     <CustomQueryClientProvider>
-      <BrowserRouter>
-        <AppBar />
-        <Routes>
-          <Route path='/' element={<SchedulePage />} />
-          <Route path='/schedule-detail'>
-            <Route path=':date' element={<ScheduleDetailPage />}>
-              <Route
-                path=':raidId'
-                element={<ScheduleDetailPartyMembersWidget />}
-              />
-            </Route>
-          </Route>
-          <Route path='/settings' element={<SettingsPage />} />
-          <Route path='/member' element={<MemberPage />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryErrorResetBoundary>
+        {({ reset }) => (
+          <ErrorBoundary onReset={reset} FallbackComponent={FallBackUI}>
+            <BrowserRouter>
+              <AppBar />
+              <Routes>
+                <Route path='/' element={<SchedulePage />} />
+                <Route path='/schedule-detail'>
+                  <Route path=':date' element={<ScheduleDetailPage />}>
+                    <Route
+                      path=':raidId'
+                      element={<ScheduleDetailPartyMembersWidget />}
+                    />
+                  </Route>
+                </Route>
+                <Route path='/settings' element={<SettingsPage />} />
+                <Route path='/member' element={<MemberPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
       <Dialog />
     </CustomQueryClientProvider>
   );

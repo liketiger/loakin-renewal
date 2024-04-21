@@ -24,6 +24,7 @@ interface ModalProps {
 interface OpenProps {
   children: React.ReactNode;
   windowName: string;
+  onClick?: () => void;
 }
 
 interface FooterProps {
@@ -53,14 +54,19 @@ export const CustomModal = ({ children }: ModalProps) => {
   );
 };
 
-const Open = ({ children, windowName }: OpenProps) => {
+const Open = ({ children, windowName, onClick }: OpenProps) => {
   const { open } = useContext(ModalContext);
 
   // children이 ReactElement인지 확인
   if (!isValidElement(children)) return null;
 
+  const onBtnClick = () => {
+    onClick?.();
+    open(windowName);
+  }
+
   return cloneElement(children as ReactElement, {
-    onClick: () => open(windowName)
+    onClick: () => onBtnClick()
   });
 };
 
@@ -121,7 +127,7 @@ const Window = ({ children, name, title, onClose }: WindowProps) => {
       >
         <Box
           onClick={onModalClose}
-          sx={{ position: 'absolute', right: '5px', top: '5px' }}
+          sx={{ position: 'absolute', right: '5px', top: '5px', cursor: 'pointer' }}
         >
           <CloseIcon />
         </Box>

@@ -5,7 +5,7 @@ export const memberQuery = {
   useCharacterListGet: (characterName: string) => {
     const { data } = useSuspenseQuery({
       queryKey: ['member', 'characterList', characterName],
-      queryFn: () => memberApi.getCharacterList(characterName)
+      queryFn: () => memberApi.getCharacterList(characterName),
     });
 
     return { data };
