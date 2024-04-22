@@ -14,13 +14,16 @@ import {
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { CustomModal } from '../../../../../components/common/CustomModal';
+import { useDialog } from '../../../../../components/dialog/useDialog';
 import { CommonTable } from '../../../../../components/table/CommonTable';
 import { CommonTableContainer } from '../../../../../components/table/CommonTableContainer';
 import { Td } from '../../../../../components/table/Td';
 import { Th } from '../../../../../components/table/Th';
 import { ColorPalette } from '../../../../../utils/colors';
 import { useMemberState } from '../../../useState';
+import { convertToMemberParams } from '../../../utils';
 import { MemberModalCharacterTableWidget } from '../../modal/widget';
+import { useMemberSearchProvider } from '../provider/useProvider';
 
 export { Modal as MemberModal };
 
@@ -44,15 +47,30 @@ const Modal = () => {
   );
   const theme = useTheme();
   const [userName, setUserName] = useState('');
+  const { updateMemberList } = useMemberSearchProvider();
+  const { alert } = useDialog();
 
   const onClose = () => {
     setCharacterName('');
     setShowConfirm(false);
     setUserName('');
+    setSelectedCharacterList([]);
   };
 
   const onConfirm = () => {
+    if (!userName) {
+      alert({ title: '알림', description: '유저명을 입력하세요' });
+      return false;
+    }
+    if (selectedCharacterList?.length === 0) {
+      alert({ title: '알림', description: '캐릭터를 선택하세요' });
+      return false;
+    }
+    updateMemberList(
+      convertToMemberParams(selectedCharacterList ?? [], userName)
+    );
     onClose();
+    return true;
   };
   return (
     <CustomModal>
@@ -66,6 +84,8 @@ const Modal = () => {
             color: ColorPalette.white,
             padding: '5px 10px',
             gap: '5px',
+            whiteSpace: 'nowrap',
+            width: '120px',
 
             '&:hover': {
               backgroundColor: theme.palette.primary.dark
@@ -121,7 +141,15 @@ const Modal = () => {
                   <Td>
                     <Box display='flex' gap='10px'>
                       <TextField
-                        onChange={(e) => setCharacterName(e.target.value)}
+                        onChange={(e) => {
+                          setShowConfirm(false);
+                          setCharacterName(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            setShowConfirm(true);
+                          }
+                        }}
                         value={characterName}
                         sx={{ width: '100%' }}
                         placeholder='캐릭터명으로 검색'

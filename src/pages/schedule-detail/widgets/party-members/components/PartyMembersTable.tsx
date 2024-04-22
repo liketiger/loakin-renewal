@@ -64,7 +64,7 @@ const PartyMembersTable = () => {
               </Th>
               <Th width='4%'>유저명</Th>
               <Th width='10%'>캐릭터명</Th>
-              <Th width='4%'>아이템 레벨</Th>
+              <Th width='2%'>아이템 레벨</Th>
               <Th width='6%'>클래스</Th>
             </TableRow>
           </TableHead>

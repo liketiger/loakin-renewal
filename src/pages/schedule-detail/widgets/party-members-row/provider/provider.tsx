@@ -11,7 +11,8 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
     onPartyMembersUpdate,
     partyMembersList,
     isPartyMembersCreatePending,
-    isPartyMembersDeletePending
+    isPartyMembersDeletePending,
+    memberList
   } = useScheduleDetailPartyMembersRowQueryLogic();
   const value = useMemo(
     () => ({
@@ -20,7 +21,8 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
       onPartyMembersUpdate,
       partyMembersList,
       isPartyMembersCreatePending,
-      isPartyMembersDeletePending
+      isPartyMembersDeletePending,
+      memberList
     }),
     [
       onPartyMembersCreate,
@@ -28,7 +30,8 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
       onPartyMembersUpdate,
       partyMembersList,
       isPartyMembersCreatePending,
-      isPartyMembersDeletePending
+      isPartyMembersDeletePending,
+      memberList
     ]
   );
   return (

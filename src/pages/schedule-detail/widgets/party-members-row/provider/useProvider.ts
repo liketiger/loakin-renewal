@@ -10,7 +10,8 @@ const useProvider = () => {
     onPartyMembersUpdate,
     partyMembersList,
     isPartyMembersCreatePending,
-    isPartyMembersDeletePending
+    isPartyMembersDeletePending,
+    memberList
   } = useContext(ScheduleDetailPartyMembersRowContext);
   return {
     onPartyMembersCreate,
@@ -18,6 +19,7 @@ const useProvider = () => {
     onPartyMembersUpdate,
     partyMembersList,
     isPartyMembersCreatePending,
-    isPartyMembersDeletePending
+    isPartyMembersDeletePending,
+    memberList
   };
 };

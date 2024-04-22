@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { scheduleDetailRepository } from '../../../repository';
 import { useEffect } from 'react';
 import { useScheduleDetailsState } from '../../../usetState';
+import { memberRepository } from '../../../../member/repository';
 
 export { useQueryLogic as useScheduleDetailPartyMembersRowQueryLogic };
 
@@ -18,7 +19,8 @@ const useQueryLogic = () => {
     scheduleDetailRepository.usePartyMembersUpdate(+raidId!);
   const { run: onPartyMembersDelete, isPending: isPartyMembersDeletePending } =
     scheduleDetailRepository.usePartyMembersDelete(+raidId!);
-
+    const { data: memberList } = memberRepository.useMemberListGet();
+ 
   useEffect(() => {
     setMemberCount(partyMembersList?.length ?? 0);
   }, [partyMembersList, setMemberCount]);
@@ -29,6 +31,7 @@ const useQueryLogic = () => {
     onPartyMembersDelete,
     partyMembersList,
     isPartyMembersCreatePending,
-    isPartyMembersDeletePending
+    isPartyMembersDeletePending,
+    memberList
   };
 };

@@ -5,8 +5,8 @@ import { useMemberSearchQueryLogic } from './useQueryLogic';
 export { Provier as MemberSearchProvider };
 
 const Provier = ({ children }: { children: React.ReactNode }) => {
-  const { characterList } = useMemberSearchQueryLogic();
-  const value = useMemo(() => ({ characterList }), [characterList]);
+  const { updateMemberList } = useMemberSearchQueryLogic();
+  const value = useMemo(() => ({ updateMemberList }), [updateMemberList]);
   return (
     <MemberSearchContext.Provider value={value}>
       {children}

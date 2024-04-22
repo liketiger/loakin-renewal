@@ -31,7 +31,7 @@ const CustomQueryClientProvider = ({
       mutations: {
         onError: async (error) => {
           alert({
-            description: '연결에 실패했습니다.',
+            description: '연결에 실패했습니다.' + error.message,
             title: '알림'
           });
           console.log(error);

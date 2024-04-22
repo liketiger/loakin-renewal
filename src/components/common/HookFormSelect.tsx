@@ -8,9 +8,16 @@ type Props = {
   optionList: OptionList[];
   width?: string;
   onSubmit?: () => void;
+  disabled?: boolean;
 };
 
-export const HookFormSelect = ({ name, defaultValue, optionList, onSubmit }: Props) => {
+export const HookFormSelect = ({
+  name,
+  defaultValue,
+  optionList,
+  onSubmit,
+  disabled
+}: Props) => {
   const { control } = useFormContext();
   const {
     field: { value, onChange: onHookFormChange }
@@ -21,10 +28,16 @@ export const HookFormSelect = ({ name, defaultValue, optionList, onSubmit }: Pro
   const onChange = (e: any) => {
     onHookFormChange(e);
     onSubmit?.();
-  }
+  };
   return (
     <Box sx={{ width: '100%' }}>
-      <Select sx={{ width: '100%', textAlign: 'left' }} value={value} onChange={onChange} displayEmpty>
+      <Select
+        sx={{ width: '100%', textAlign: 'left' }}
+        value={value}
+        onChange={onChange}
+        displayEmpty
+        disabled={disabled}
+      >
         {defaultValue && (
           <MenuItem value='' disabled={true}>
             {defaultValue}

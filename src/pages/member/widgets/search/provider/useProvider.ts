@@ -4,8 +4,8 @@ import { MemberSearchContext } from './context';
 export { useProvider as useMemberSearchProvider };
 
 const useProvider = () => {
-  const { characterList } = useContext(MemberSearchContext);
+  const { updateMemberList } = useContext(MemberSearchContext);
   return {
-    characterList
+    updateMemberList
   };
 };

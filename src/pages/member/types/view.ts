@@ -7,3 +7,12 @@ export interface CharacterView {
   ItemMaxLevel: string;
   ItemLevel: string;
 }
+
+export interface MemberView {
+  ServerName: string;
+  CharacterName: string;
+  CharacterLevel: number;
+  CharacterClassName: string;
+  ItemLevel: string;
+  userName: string;
+}

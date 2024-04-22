@@ -31,7 +31,7 @@ interface FooterProps {
   cancelBtn?: React.ReactNode;
   confirmBtn?: React.ReactNode;
   onClose?: () => void;
-  onConfirm?: () => void;
+  onConfirm?: () => boolean;
 }
 
 interface WindowProps {
@@ -79,8 +79,7 @@ const Footer = ({ cancelBtn, confirmBtn, onClose, onConfirm }: FooterProps) => {
   };
 
   const onConfirmClick = () => {
-    onConfirm?.();
-    close();
+    onConfirm?.() && close();
   };
 
   return (

@@ -9,5 +9,14 @@ export const memberQuery = {
     });
 
     return { data };
+  },
+
+  useMemberListGet: () => {
+    const { data } = useSuspenseQuery({
+      queryKey: ['member', 'memberList'],
+      queryFn: () => memberApi.getMemberList(),
+    });
+
+    return { data };
   }
 };

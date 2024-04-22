@@ -13,7 +13,7 @@ export const Header = ({ children, title }: Props) => {
       <Box
         sx={{
           display: 'flex',
-          width: '200px',
+          width: '50%',
           justifyContent: 'right',
           gap: '10px',
         }}
