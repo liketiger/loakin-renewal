@@ -5,7 +5,7 @@ export const getSupabasePartyMembers = async (raidId: number) => {
   const { data, error } = await supabase
     .from('partyMembers')
     .select('*')
-    .eq('raidId', raidId);
+    .eq('raidId', raidId).order('id', { ascending: true });
 
   if (error) throw new Error('Supabase에서 Members를 가져올 수 없습니다.');
 
