@@ -10,9 +10,15 @@ export const MemberTableList = () => {
     <>
       {isEmpty && <NoResult colsapn={6} />}
       {!isEmpty &&
-        memberList?.map((member) => (
-          <MemberTableRow key={member.CharacterName} item={member} />
-        ))}
+        memberList
+          ?.map((item) => ({
+            ...item,
+            ItemLevel: Math.floor(+(item.ItemLevel as string).replace(/,/g, ''))
+          }))
+          .sort((curr, next) => next.ItemLevel - curr.ItemLevel)
+          .map((member) => (
+            <MemberTableRow key={member.CharacterName} item={member} />
+          ))}
     </>
   );
 };

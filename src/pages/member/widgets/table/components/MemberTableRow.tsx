@@ -12,7 +12,7 @@ export const MemberTableRow = ({ item }: Props) => {
     <TableRow>
       <Td>{item.CharacterLevel}</Td>
       <Td>{item.CharacterName}</Td>
-      <Td>{Math.floor(+item.ItemLevel.replace(/,/g, ''))}</Td>
+      <Td>{item.ItemLevel}</Td>
       <Td>{item.CharacterClassName}</Td>
       <Td>{item.ServerName}</Td>
       <Td>{item.userName}</Td>

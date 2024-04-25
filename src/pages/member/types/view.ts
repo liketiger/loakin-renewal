@@ -13,6 +13,6 @@ export interface MemberView {
   CharacterName: string;
   CharacterLevel: number;
   CharacterClassName: string;
-  ItemLevel: string;
+  ItemLevel: string | number;
   userName: string;
 }
