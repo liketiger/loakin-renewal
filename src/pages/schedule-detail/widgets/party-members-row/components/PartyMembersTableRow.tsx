@@ -66,7 +66,7 @@ const PartyMembersTableRow = ({ item }: Props) => {
     );
     setValue(
       'itemLevel',
-      value?.ItemLevel ? Math.floor(+value.ItemLevel.replace(/,/g, '')) : 0
+      value?.ItemLevel ? Math.floor(+(value.ItemLevel as string).replace(/,/g, '')) : 0
     );
     setValue(
       'class',

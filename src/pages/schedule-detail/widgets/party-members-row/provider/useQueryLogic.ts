@@ -19,7 +19,7 @@ const useQueryLogic = () => {
     scheduleDetailRepository.usePartyMembersUpdate(+raidId!);
   const { run: onPartyMembersDelete, isPending: isPartyMembersDeletePending } =
     scheduleDetailRepository.usePartyMembersDelete(+raidId!);
-    const { data: memberList } = memberRepository.useMemberListGet();
+    const { data: memberList } = memberRepository.useMemberListGet('');
  
   useEffect(() => {
     setMemberCount(partyMembersList?.length ?? 0);
