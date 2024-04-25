@@ -304,7 +304,7 @@ https://loakin.netlify.app/
 
 # 데모 영상
 
-![]()
+![](https://github.com/liketiger/loakin-renewal/assets/50165633/e9c01fbb-77df-4cb0-916e-495dba16613e)
 
 <br>
 
