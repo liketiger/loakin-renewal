@@ -304,7 +304,8 @@ https://loakin.netlify.app/
 
 # 데모 영상
 
-![](https://github.com/liketiger/loakin-renewal/assets/50165633/e9c01fbb-77df-4cb0-916e-495dba16613e)
+![](https://github.com/liketiger/loakin-renewal/assets/50165633/0ba899d8-677a-4f34-9a58-2bbe22b19b26)
+![](https://github.com/liketiger/loakin-renewal/assets/50165633/7e500db3-1532-4a5d-813c-69de08af773b)
 
 <br>
 
@@ -321,6 +322,10 @@ https://loakin.netlify.app/
 - 캐릭터 클릭시 모달로 상세 정보 확인 가능 (추가 예정)
 
 <br>
+
+# 기획 및 디자인
+![](image.png) 
+![](image-1.png)
 
 # 개발 과정
 
