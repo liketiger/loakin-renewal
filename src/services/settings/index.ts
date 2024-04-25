@@ -12,7 +12,7 @@ export const getSupabaseSettings = async (keyword?: string) => {
 
   if (error) throw new Error('Supabase에서 Settings를 가져올 수 없습니다.');
 
-  return data.sort((a, b) => a.id - b.id);
+  return data.sort((curr, next) => curr.id - next.id);
 };
 
 export const getSupabaseManagableVariable = async () => {

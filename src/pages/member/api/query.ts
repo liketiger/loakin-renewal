@@ -11,10 +11,10 @@ export const memberQuery = {
     return { data };
   },
 
-  useMemberListGet: () => {
+  useMemberListGet: (keyword: string) => {
     const { data } = useSuspenseQuery({
-      queryKey: ['member', 'memberList'],
-      queryFn: () => memberApi.getMemberList(),
+      queryKey: ['member', 'memberList', keyword],
+      queryFn: () => memberApi.getMemberList(keyword),
     });
 
     return { data };

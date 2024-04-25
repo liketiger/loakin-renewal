@@ -9,7 +9,7 @@ import { lostArkURL } from '../utils/constants';
 const url = {
   getCharacterList: (characterName: string) =>
     `${lostArkURL}/characters/${characterName}/siblings`,
-  getMemberList: getSupabaseMemberList,
+  getMemberList: (keyword: string) => getSupabaseMemberList(keyword),
   updateSupabaseMemberList: (characterList: MemberParams[]) =>
     updateSupabaseMemberList(characterList),
   deleteSupabaseMemberList: (characterName: string) =>
@@ -30,7 +30,7 @@ export const memberApi = {
     return data;
   },
 
-  getMemberList: url.getMemberList,
+  getMemberList: (keyword: string) => url.getMemberList(keyword),
   updateMemberList: (characterList: MemberParams[]) =>
     url.updateSupabaseMemberList(characterList),
   deleteMemberList: (characterName: string) =>

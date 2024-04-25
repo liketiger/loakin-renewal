@@ -10,8 +10,8 @@ export const memberRepository = {
     };
   },
 
-  useMemberListGet: () => {
-    const { data } = memberQuery.useMemberListGet();
+  useMemberListGet: (keyword: string) => {
+    const { data } = memberQuery.useMemberListGet(keyword);
     return {
       data
     };
