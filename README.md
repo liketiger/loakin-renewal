@@ -32,7 +32,9 @@
 # 배포 사이트 주소
 
 https://loakin.netlify.app/
-현재 Supabase 정책 변경 문제로 인해 접속이 불가능합니다.
+<br>
+현재 Supabase 정책 변경 문제로 인해 접속이 불가능합니다.<br>
+하단의 데모 영상을 참고해주세요
 
 <br>
 
